@@ -11,28 +11,15 @@ class NumberSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('number')->insert(
-            [
-                'section' => 'card'
-            ],[
-                'section' => 'vital1'
-            ],[
-                'section' => 'vital2'
-            ],[
-                'section' => 'vital3'
-            ],[
-                'section' => 'pedia'
-            ],[
-                'section' => 'im'
-            ],[
-                'section' => 'surgery'
-            ],[
-                'section' => 'ob'
-            ],[
-                'section' => 'dental'
-            ],[
-                'section' => 'bite'
-            ]
-        );
+        DB::table('number')->insert(['section' => 'card']);
+        DB::table('number')->insert(['section' => 'vital1']);
+        DB::table('number')->insert(['section' => 'vital2']);
+        DB::table('number')->insert(['section' => 'vital3']);
+        DB::table('number')->insert(['section' => 'pedia']);
+        DB::table('number')->insert(['section' => 'im']);
+        DB::table('number')->insert(['section' => 'surgery']);
+        DB::table('number')->insert(['section' => 'ob']);
+        DB::table('number')->insert(['section' => 'dental']);
+        DB::table('number')->insert(['section' => 'bite']);
     }
 }
