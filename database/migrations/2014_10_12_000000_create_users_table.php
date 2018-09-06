@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('profession');
             $table->string('fname');
             $table->string('lname');
+            $table->string('access');
             $table->string('username');
             $table->string('password');
             $table->integer('status');

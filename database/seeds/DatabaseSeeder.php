@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ListSeederTable::class);
+        $this->call(NumberSeeder::class);
+        $this->call(ParameterSeeder::class);
     }
 }
