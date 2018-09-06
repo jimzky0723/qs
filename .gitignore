@@ -1,5 +1,5 @@
-/app
-/resources
+/database
+/resources/tdh
 /videos
 /node_modules
 /public/hot
