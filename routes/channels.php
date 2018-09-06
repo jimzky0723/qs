@@ -8,7 +8,7 @@
 | Here you may register all of the event broadcasting channels that your
 | application supports. The given channel authorization callbacks are
 | used to check if an authenticated user can listen to the channel.
-|
+|   https://drive.google.com/open?id=13VGcCtQODIGbgBR7jOimeyCFxvTlE3tZ
 */
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {

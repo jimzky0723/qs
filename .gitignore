@@ -1,6 +1,7 @@
 /app
 /database
 /resources
+/videos
 /node_modules
 /public/hot
 /public/storage
