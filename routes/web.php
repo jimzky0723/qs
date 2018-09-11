@@ -22,7 +22,7 @@ Route::get('/logout', function (){
 Route::get('register','LoginCtrl@register');
 Route::post('register','LoginCtrl@registerSave');
 
-Route::get('/','HomeCtrl@index');
+Route::get('/','HomeCtrl@index')->middleware('access');
 Route::get('screen','HomeCtrl@screen');
 
 
@@ -73,6 +73,9 @@ Route::get('settings/news/delete/{id}','AdminCtrl@deleteNews');
 Route::get('page/denied',function(){
     return view('page.denied');
 });
+
+Route::get('screen/card/pending/list','ScreenCtrl@getPendingInCard');
+Route::get('screen/{screen}','ScreenCtrl@showScreen');
 Route::get('sample',function(){
     $data = array(
         'fname' => 'Jimmy',

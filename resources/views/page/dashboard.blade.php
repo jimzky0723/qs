@@ -100,8 +100,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //initialize the javascript
+            var url = "{{ url('/') }}";
             App.init();
-            App.dashboard();
+            App.dashboard(url);
         });
     </script>
     <script type="text/javascript">

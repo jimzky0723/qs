@@ -18,7 +18,7 @@
 <div class="mai-wrapper mai-login">
     <div class="main-content container">
         <div class="splash-container row">
-            <div class="col-md-6 user-message"><span class="splash-message text-right">Hello!<br> it's good to<br> see you again</span><span class="alternative-message text-right">Don't have an account? <a href="pages-sign-up.html">Sign Up</a></span></div>
+            <div class="col-md-6 user-message"><span class="splash-message text-right">Hello!<br> it's good to<br> see you again</span><span class="alternative-message text-right"><a href="{{ url('/screen') }}" target="_blank">Go to Queuing Screen</a></span></div>
             <div class="col-md-6 form-message"><img src="{{ url('resources/tdh/') }}/img/logo-2x.png" alt="logo" width="169" height="28" class="logo-img mb-4"><span class="splash-description text-center mt-5 mb-5">Login to your account</span>
                 <form method="post" action="{{ url('login') }}">
                     {{ csrf_field() }}

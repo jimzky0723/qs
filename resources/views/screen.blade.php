@@ -237,7 +237,10 @@ $sections2 = array(
 <script src="{{ url('resources/layout/') }}/js/script.js"></script>
 <script src="{{ url('resources/layout/') }}/js/responsivevoice.js"></script>
 <script>
-    var sock = new WebSocket('{{ \Illuminate\Support\Facades\Session::get('socket') }}');
+    <?php
+        $param = \App\Parameters::where('description','socket')->first()->value;
+    ?>
+    var sock = new WebSocket('{{ $param }}');
 
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', "{{ url('resources/layout/bell.mp3') }}");
@@ -327,7 +330,7 @@ $sections2 = array(
     {
         var pending = '';
         $.get(
-            '{{ url('patient/card/pending/list') }}',
+            '{{ url('screen/card/pending/list') }}',
             function(data){
                 jQuery.each( data, function( i, val ) {
                     $( "#" + i ).append( document.createTextNode( " - " + val ) );
