@@ -15,8 +15,25 @@ class NumberCtrl extends Controller
 
     public function index()
     {
+        $lastnumber = '--';
+        $last = ListPatients::orderBy('id','desc')
+                    ->first();
+        if($last){
+            $letter = self::initialSection($last->section);
+            $lastnumber = $letter.$last->num;
+        }
+
+        $sectionNumber = array(
+            'pedia' => self::initialSection('pedia').self::getLastNumber('pedia'),
+            'surgery' => self::initialSection('surgery').self::getLastNumber('surgery'),
+            'im' => self::initialSection('im').self::getLastNumber('im'),
+            'ob' => self::initialSection('ob').self::getLastNumber('ob'),
+            'bite' => self::initialSection('bite').self::getLastNumber('bite'),
+            'dental' => self::initialSection('dental').self::getLastNumber('dental')
+        );
         return view('page.number',[
-            'lastNumber' => self::getLastNumber()
+            'lastNumber' => $lastnumber,
+            'sectionNumber' => $sectionNumber
         ]);
     }
 
@@ -52,10 +69,12 @@ class NumberCtrl extends Controller
         return view('next');
     }
 
-    public function getLastNumber()
+    public function getLastNumber($section=null)
     {
         $dateNow = date('mdY');
-        $last = ListPatients::orderBy('id','desc')->first();
+        $last = ListPatients::where('section',$section)
+                    ->orderBy('id','desc')->first();
+
         if(!$last)
         {
             return 1;
@@ -82,7 +101,7 @@ class NumberCtrl extends Controller
         $tbl->lname = $req->lname;
         $tbl->dob = $req->dob;
         $tbl->hospitalNum = (isset($req->hospitalNum)) ? $req->hospitalNum : '';
-        $tbl->num = $req->number;
+        $tbl->num = self::getLastNumber($req->section);
         $tbl->section = $req->section;
         $tbl->priority = $req->priority;
         $tbl->step = $step;
@@ -99,5 +118,25 @@ class NumberCtrl extends Controller
         }
 
         return redirect()->back()->with('status','added');
+    }
+
+    static function initialSection($section)
+    {
+        switch ($section){
+            case 'pedia':
+                return 'P';
+            case 'im':
+                return 'IM';
+            case 'surgery':
+                return 'S';
+            case 'ob':
+                return 'OB';
+            case 'dental':
+                return 'D';
+            case 'bite':
+                return 'A';
+            default:
+                return false;
+        }
     }
 }

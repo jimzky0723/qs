@@ -28,7 +28,7 @@
                             </li>
                             @endif
                             <li class="nav-item">
-                                <a href="{{ url('screen') }}" class="nav-link" target="_blank">
+                                <a href="{{ url('screen/screen1') }}" class="nav-link" target="_blank">
                                     <span class="icon s7-display1"></span>
                                     <span class="name">Main Screen</span>
                                 </a>

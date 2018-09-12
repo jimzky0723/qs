@@ -29,11 +29,12 @@
         }
         .cardNum {
             text-align: center;
-            font-size: 150px;
+            font-size: 140px;
             line-height: 150px;
             background: #2cc185;
             padding: 20px;
             color: #fff;
+            letter-spacing: -8px;
         }
         .emptyNum {
             text-align: center;
@@ -58,7 +59,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="cardNum">
-                                    <small>{{ $data->num }}</small>
+                                    <small>{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}</small>
                                 </div>
                                 <hr />
                                 <h5 class="text-sm-center"><strong>{{ $data->fname }} {{ $data->lname }}</strong></h5>
@@ -140,7 +141,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'pedia',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
@@ -156,7 +157,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'im',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
@@ -172,7 +173,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'surgery',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
@@ -188,7 +189,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'ob',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
@@ -204,7 +205,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'dental',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
@@ -220,7 +221,7 @@
             <?php if($data): ?>
             sock.send(JSON.stringify({
                 section: 'bite',
-                number: '{{ $data->num }}',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>

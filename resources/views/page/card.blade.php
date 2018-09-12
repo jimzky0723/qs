@@ -56,7 +56,7 @@ $status = session('status');
             <div class="col-sm-3">
                 <div class="pricing-table">
                     <div class="pricing-table-title">Now Serving...</div>
-                    <div class="pricing-table-price"><span class="value">{{ $current->num }}</span></div>
+                    <div class="pricing-table-price"><span class="value">{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}</span></div>
                     <div class="panel-divider panel-divider-xl"></div>
                     <ul class="pricing-table-features">
                         <li class="names"><b>{{ $current->fname }} {{ $current->lname }}</b></li>
@@ -92,10 +92,10 @@ $status = session('status');
                             @foreach($data as $row)
                                 <tr>
                                     <td class="text-center {{ ($row->priority==1) ? 'text-success':'' }}">
-                                        {{ $row->num }}
                                         @if($row->priority==1)
                                             <span class="text-success"><i class="fa fa-wheelchair"></i></span>
                                         @endif
+                                        {{ \App\Http\Controllers\NumberCtrl::initialSection($row->section) }}{{ $row->num }}
                                     </td>
                                     <td class="names">{{ $row->fname }}</td>
                                     <td class="names">{{ $row->lname }}</td>
@@ -160,7 +160,7 @@ $status = session('status');
             sock.onopen = function() {
                 sock.send(JSON.stringify({
                     section: 'card',
-                    number: '{{ $current->num }}',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
                     priority: '{{ $current->priority }}'
                 }));
 

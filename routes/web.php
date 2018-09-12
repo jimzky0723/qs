@@ -23,7 +23,6 @@ Route::get('register','LoginCtrl@register');
 Route::post('register','LoginCtrl@registerSave');
 
 Route::get('/','HomeCtrl@index')->middleware('access');
-Route::get('screen','HomeCtrl@screen');
 
 
 Route::get('number','NumberCtrl@index');
@@ -74,6 +73,7 @@ Route::get('page/denied',function(){
     return view('page.denied');
 });
 
+Route::get('screen','HomeCtrl@screen');
 Route::get('screen/card/pending/list','ScreenCtrl@getPendingInCard');
 Route::get('screen/{screen}','ScreenCtrl@showScreen');
 Route::get('sample',function(){

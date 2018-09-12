@@ -43,4 +43,24 @@ class ScreenCtrl extends Controller
         }
         return $data;
     }
+
+    static function initialSection($section)
+    {
+        switch ($section){
+            case 'pedia':
+                return 'P';
+            case 'im':
+                return 'IM';
+            case 'surgery':
+                return 'S';
+            case 'ob':
+                return 'OB';
+            case 'dental':
+                return 'D';
+            case 'bite':
+                return 'A';
+            default:
+                return false;
+        }
+    }
 }

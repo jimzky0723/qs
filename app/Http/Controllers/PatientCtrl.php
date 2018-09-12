@@ -63,7 +63,8 @@ class PatientCtrl extends Controller
             Number::where('section','card')
                     ->update([
                         'num'=> $patient->num,
-                        'priority' => $patient->priority
+                        'priority' => $patient->priority,
+                        'patientId' => $id
                     ]);
 
             return redirect()->back()->with('status','added');
@@ -87,7 +88,8 @@ class PatientCtrl extends Controller
             Number::where('section','card')
                 ->update([
                     'num'=> '',
-                    'priority' => ''
+                    'priority' => '',
+                    'patientId' => ''
                 ]);
 
             return redirect()->back()->with('status','ready');
@@ -107,7 +109,8 @@ class PatientCtrl extends Controller
             Number::where('section','card')
                 ->update([
                     'num'=> '',
-                    'priority' => ''
+                    'priority' => '',
+                    'patientId' => ''
                 ]);
             return redirect()->back()->with('status','ready');
         }
@@ -139,8 +142,15 @@ class PatientCtrl extends Controller
         {
             $next = Vital::select('vital.id','vital.patientId')
                 ->join('list','list.id','=','vital.patientId')
-                ->where('station',0)
-                ->orderBy('list.priority','desc')
+                ->where('station',0);
+
+            if($station==3){
+                $next = $next->where('section','ob');
+            }else{
+                $next = $next->where('section','!=','ob');
+            }
+
+            $next = $next->orderBy('list.priority','desc')
                 ->first();
 
             if($next)
@@ -155,7 +165,8 @@ class PatientCtrl extends Controller
                 Number::where('section','vital'.$station)
                     ->update([
                         'num'=> $patient->num,
-                        'priority' => $patient->priority
+                        'priority' => $patient->priority,
+                        'patientId' => $next->patientId
                     ]);
             }
 
@@ -177,7 +188,8 @@ class PatientCtrl extends Controller
             Number::where('section','vital'.$station)
                 ->update([
                     'num'=> '',
-                    'priority' => ''
+                    'priority' => '',
+                    'patientId' => ''
                 ]);
 
             return redirect()->back()->with('station',$station);
@@ -199,7 +211,8 @@ class PatientCtrl extends Controller
             Number::where('section','vital'.$station)
                 ->update([
                     'num'=> '',
-                    'priority' => ''
+                    'priority' => '',
+                    'patientId' => ''
                 ]);
             return redirect()->back()->with('station',$station);
 
@@ -259,7 +272,8 @@ class PatientCtrl extends Controller
             Number::where('section',$section)
                 ->update([
                     'num'=> $patient->num,
-                    'priority' => $patient->priority
+                    'priority' => $patient->priority,
+                    'patientId' => $next->patientId
                 ]);
         }
 
@@ -280,7 +294,8 @@ class PatientCtrl extends Controller
         Number::where('section',$section)
             ->update([
                 'num'=> '',
-                'priority' => ''
+                'priority' => '',
+                'patientId' => ''
             ]);
         return redirect()->back()->with('section',$section);
     }
@@ -305,7 +320,8 @@ class PatientCtrl extends Controller
         Number::where('section',$section)
             ->update([
                 'num'=> '',
-                'priority' => ''
+                'priority' => '',
+                'patientId' => ''
             ]);
         return redirect()->back()->with('section',$section);
     }

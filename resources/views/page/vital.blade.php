@@ -11,11 +11,12 @@
         }
         .cardNum {
             text-align: center;
-            font-size: 150px;
+            font-size: 140px;
             line-height: 150px;
             background: #2cc185;
             padding: 20px;
             color: #fff;
+            letter-spacing: -8px;
         }
         .emptyNum {
             text-align: center;
@@ -41,7 +42,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="cardNum">
-                                    <small>{{ $data->num }}</small>
+                                    <small>{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}</small>
                                 </div>
                                 <hr />
                                 <h5 class="text-sm-center"><strong>{{ $data->fname }} {{ $data->lname }}</strong></h5>
@@ -121,7 +122,7 @@
                 <?php if($data): ?>
                 sock.send(JSON.stringify({
                     section: 'vital1',
-                    number: '{{ $data->num }}',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                     priority: '{{ $data->priority }}'
                 }));
                 <?php else: ?>
@@ -141,7 +142,7 @@
                 <?php if($data): ?>
                 sock.send(JSON.stringify({
                     section: 'vital2',
-                    number: '{{ $data->num }}',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                     priority: '{{ $data->priority }}'
                 }));
                 <?php else: ?>
@@ -161,7 +162,7 @@
                 <?php if($data): ?>
                 sock.send(JSON.stringify({
                     section: 'vital3',
-                    number: '{{ $data->num }}',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                     priority: '{{ $data->priority }}'
                 }));
                 <?php else: ?>

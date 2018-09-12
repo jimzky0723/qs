@@ -94,10 +94,11 @@
             position: relative;
         }
         .table td .number {
-            font-size: 130px;
+            font-size: 120px;
             line-height: 125px;
             color: #ffe142;
             letter-spacing: -7px;
+            margin-right: 10px;
         }
         span.title {
             position: absolute;
@@ -131,11 +132,19 @@
                 <td width="25%">
                     <span class="title">Card Issuance</span>
                     <span class="number section-card">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('card'); ?>
+                        <?php
+                            $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('card');
+                        ?>
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                                $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                                $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td width="25%">
@@ -145,7 +154,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td width="50%" colspan="2" rowspan="3">
@@ -173,7 +188,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td width="25%">
@@ -183,7 +204,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
             </tr>
@@ -195,7 +222,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td>
@@ -205,7 +238,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
             </tr>
@@ -217,7 +256,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td>
@@ -227,7 +272,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td width="25%">
@@ -237,7 +288,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
                 <td width="25%">
@@ -247,7 +304,13 @@
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
-                        {!!  $getNumber->num !!}
+                        @if($getNumber->num > 0)
+                            <?php
+                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
+                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
+                            ?>
+                        @endif
+                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
             </tr>
@@ -302,13 +365,14 @@
 
        audioElement.play();
         setTimeout(function(){
-            responsiveVoice.speak('Now Serving, Number '+data.number, "UK English Female", {rate: 0.8});
+            responsiveVoice.speak('Now Serving, number, '+data.number, "UK English Female", {rate: 0.8});
             audioElement.pause();
         },2300);
     };
 
     sock.onmessage = function(event) {
         var data = JSON.parse(event.data);
+
         var priority = '';
         if(data.priority==1)
         {
@@ -316,12 +380,7 @@
         }
         $('.section-'+data.section).html(priority +" "+data.number).fadeOut(500).fadeIn(500);
 
-        if(data.channel=='pending')
-        {
-            $('.pending-section').fadeOut(500);
-            getPendingInCard();
-        }
-        if(data.number > 0)
+        if(data.number.length > 0 && data.number != '&nbsp;')
         {
             playAudio(data);
         }
