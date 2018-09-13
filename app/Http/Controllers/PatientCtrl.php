@@ -422,4 +422,105 @@ class PatientCtrl extends Controller
 
         return self::patientList();
     }
+
+    public function forwardPatient($section,$id)
+    {
+        $data = ListPatients::find($id);
+
+        $chkOtherStation = self::checkOtherStation($id);
+        if($chkOtherStation)
+            return redirect()->back()->with('pending',$chkOtherStation);
+
+        if($section=='card'){
+            $check = Card::count();
+            if($check)
+                return redirect()->back()->with('busy','Card Issuance');
+
+            $c = new Card();
+            $c->patientId = $id;
+            $c->save();
+
+            return self::processForward($data,1,$section,'Card Issuance',$data->num,$data->priority,$data->section);
+        }else if($section == 'vital1'){
+            $check = Vital::where('station',1)->count();
+            if($check)
+                return redirect()->back()->with('busy','Vital Station 1');
+
+            $q = new Vital();
+            $q->patientId = $id;
+            $q->station = 1;
+            $q->save();
+
+            return self::processForward($data,2,$section,'Vital Station 1',$data->num,$data->priority,$data->section);
+        }else if($section == 'vital2'){
+            $check = Vital::where('station',2)->count();
+            if($check)
+                return redirect()->back()->with('busy','Vital Station 2');
+
+            $q = new Vital();
+            $q->patientId = $id;
+            $q->station = 2;
+            $q->save();
+
+            return self::processForward($data,2,$section,'Vital Station 2',$data->num,$data->priority,$data->section);
+        }else if($section == 'vital3'){
+
+            $check = Vital::where('station',3)->count();
+            if($check)
+                return redirect()->back()->with('busy','Vital Station 3');
+
+            if($data->section!='ob')
+                return redirect()->back()->with('notOb',true);
+
+            $q = new Vital();
+            $q->patientId = $id;
+            $q->station = 3;
+            $q->save();
+
+            return self::processForward($data,2,$section,'Vital Station 3',$data->num,$data->priority,$data->section);
+        }else if($section == 'pedia' || $section == 'im' || $section == 'surgery' || $section == 'ob' || $section == 'dental' || $section == 'bite'){
+            if($section!=$data->section)
+                return redirect()->back()->with('invalid', AbbrCtrl::equiv($section));
+
+            $check = Consultation::where('section',$section)->count();
+            if($check)
+                return redirect()->back()->with('busy', AbbrCtrl::equiv($section));
+
+
+            $q = new Consultation();
+            $q->patientId = $id;
+            $q->section = $section;
+            $q->status = 1;
+            $q->save();
+
+            return self::processForward($data,3,$section,AbbrCtrl::equiv($section),$data->num,$data->priority,$data->section);
+        }
+    }
+
+    public function processForward($data,$step,$section,$forward,$num,$priority,$sec)
+    {
+        $data->update([
+            'step' => $step
+        ]);
+
+        return redirect()->back()->with('info',[
+            'section' => $section,
+            'forward' => $forward,
+            'num' => $num,
+            'priority' => $priority,
+            'sec' => $sec
+        ]);
+    }
+
+    public function checkOtherStation($id)
+    {
+        if(Card::where('patientId',$id)->first())
+            return 'issuing card.';
+        else if(Vital::where('patientId',$id)->first())
+            return 'vital station.';
+        else if(Consultation::where('patientId',$id)->where('status',1)->first())
+            return 'consultation.';
+        else
+            return false;
+    }
 }

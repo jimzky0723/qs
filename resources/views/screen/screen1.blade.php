@@ -94,7 +94,7 @@
             position: relative;
         }
         .table td .number {
-            font-size: 120px;
+            font-size: 100px;
             line-height: 125px;
             color: #ffe142;
             letter-spacing: -7px;

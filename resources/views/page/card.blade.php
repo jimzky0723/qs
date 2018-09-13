@@ -59,7 +59,7 @@ $status = session('status');
                     <div class="pricing-table-price"><span class="value">{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}</span></div>
                     <div class="panel-divider panel-divider-xl"></div>
                     <ul class="pricing-table-features">
-                        <li class="names"><b>{{ $current->fname }} {{ $current->lname }}</b></li>
+                        <li class="names"><b>{{ $current->lname }}, {{ $current->fname }}</b></li>
                         <li><b>Hospital # :</b> {{ ($current->hospitalNum==null) ? 'N/A': $current->hospitalNum }}</li>
                         <li><b>Section :</b> {{ \App\Http\Controllers\AbbrCtrl::equiv($current->section) }}</li>
                     </ul>
@@ -80,8 +80,8 @@ $status = session('status');
                             <thead>
                             <tr>
                                 <th class="text-center">Priority #</th>
-                                <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>First Name</th>
                                 <th>Hospital #</th>
                                 <th>Section</th>
                                 <th>Status</th>
@@ -97,8 +97,8 @@ $status = session('status');
                                         @endif
                                         {{ \App\Http\Controllers\NumberCtrl::initialSection($row->section) }}{{ $row->num }}
                                     </td>
-                                    <td class="names">{{ $row->fname }}</td>
                                     <td class="names">{{ $row->lname }}</td>
+                                    <td class="names">{{ $row->fname }}</td>
                                     <td>{{ $row->hospitalNum }}</td>
                                     <td>{{ \App\Http\Controllers\AbbrCtrl::equiv($row->section) }}</td>
                                     @if($row->status=='ready')

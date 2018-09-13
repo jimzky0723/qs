@@ -49,6 +49,8 @@ Route::post('patient/list','PatientCtrl@searchPatient');
 Route::get('patient/count/{step}','PatientCtrl@getPendingList');
 Route::get('patient/count/{step}/{section}','PatientCtrl@getPendingList');
 
+Route::get('patient/forward/{section}/{id}','PatientCtrl@forwardPatient');
+
 Route::get('settings/user','AdminCtrl@users');
 Route::post('settings/user','AdminCtrl@userSearch');
 Route::post('settings/user/save','AdminCtrl@userSave');

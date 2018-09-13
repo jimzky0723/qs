@@ -48,34 +48,34 @@
                                 <i class="icon fa fa-wheelchair"></i> Senior/Pregnant/PWD
                             </button>
                             <button class="btn btn-space btn-info hover btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="pedia" data-equiv="Pedia" data-priority="0">
-                                <i class="icon s7-user"></i>
+                                <i class="icon fa fa-stethoscope"></i>
                                 Pedia
                                 <span class="badge lastNumber">{{ $sectionNumber['pedia'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
                             <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="0">
-                                <i class="icon s7-user"></i> Internal Medicine
+                                <i class="icon fa fa-stethoscope"></i> Internal Medicine
                                 <span class="badge lastNumber">{{ $sectionNumber['im'] }}</span>
                             </button>
                             <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0">
-                                <i class="icon s7-user"></i>
+                                <i class="icon fa fa-stethoscope"></i>
                                 Surgery
                                 <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
                             <button class="btn btn-space btn-ob btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="0">
-                                <i class="icon s7-user"></i> OB
+                                <i class="icon fa fa-stethoscope"></i> OB
                                 <span class="badge lastNumber">{{ $sectionNumber['ob'] }}</span>
                             </button>
                             <button class="btn btn-space btn-dental btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="0">
-                                <i class="icon s7-user"></i> Dental
+                                <i class="icon fa fa-stethoscope"></i> Dental
                                 <span class="badge lastNumber">{{ $sectionNumber['dental'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
-                            <button data-modal="modal-surgery" class="btn btn-space btn-danger btn-big col-sm-10 md-trigger"><i class="icon s7-user"></i> Animal Bite </button>
+                            <button data-modal="modal-surgery" class="btn btn-space btn-danger btn-big col-sm-10 md-trigger"><i class="icon fa fa-stethoscope"></i> Animal Bite </button>
                         </div>
                     </div>
                 </div>
@@ -114,11 +114,11 @@
                 </div>
                 <div class="mt-1 mb-1 text-center">
                     <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0">
-                        <i class="icon s7-user"></i> 1st Dose / ER
+                        <i class="icon fa fa-stethoscope"></i> 1st Dose / ER
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
                     <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="0">
-                        <i class="icon s7-user"></i> 2nd Dose / 3rd Dose
+                        <i class="icon fa fa-stethoscope"></i> 2nd Dose / 3rd Dose
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
                 </div>
@@ -138,27 +138,27 @@
                 </div>
                 <div class="mt-1 mb-1 text-center">
                     <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="1">
-                        <i class="icon s7-user"></i> Internal Medicine
+                        <i class="icon fa fa-stethoscope"></i> Internal Medicine
                         <span class="badge lastNumber">{{ $sectionNumber['im'] }}</span>
                     </button>
                     <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1">
-                        <i class="icon s7-user"></i> Surgery
+                        <i class="icon fa fa-stethoscope"></i> Surgery
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
                     <button class="btn btn-space btn-ob btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="1">
-                        <i class="icon s7-user"></i> OB
+                        <i class="icon fa fa-stethoscope"></i> OB
                         <span class="badge lastNumber">{{ $sectionNumber['ob'] }}</span>
                     </button>
                     <button class="btn btn-space btn-dental btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="1">
-                        <i class="icon s7-user"></i> Dental
+                        <i class="icon fa fa-stethoscope"></i> Dental
                         <span class="badge lastNumber">{{ $sectionNumber['dental'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
                     <button data-modal="modal-senior-surgery" class="btn btn-space btn-danger btn-big col-sm-5 md-trigger">
-                        <i class="icon s7-user"></i> Animal Bite
+                        <i class="icon fa fa-stethoscope"></i> Animal Bite
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
                 </div>
@@ -176,8 +176,8 @@
                     <h3 class="mb-4">Animal Bite</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1"><i class="icon s7-user"></i> 1st Dose / ER </button>
-                    <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1"><i class="icon s7-user"></i> 2nd Dose / 3rd Dose </button>
+                    <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1"><i class="icon fa fa-stethoscope"></i> 1st Dose / ER </button>
+                    <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1"><i class="icon fa fa-stethoscope"></i> 2nd Dose / 3rd Dose </button>
                 </div>
             </div>
         </div>
@@ -203,12 +203,12 @@
                         <input type="text" name="hospitalNum" data-mask="hospitalNumber" parsley-trigger="change" placeholder="Enter last 6 digit hospital number" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" name="fname" parsley-trigger="change" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <label>Last Name</label>
                         <input type="text" name="lname" parsley-trigger="change" required="" placeholder="Enter last name" autocomplete="off" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="fname" parsley-trigger="change" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Date of Birth</label>

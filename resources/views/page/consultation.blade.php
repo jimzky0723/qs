@@ -62,7 +62,7 @@
                                     <small>{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}</small>
                                 </div>
                                 <hr />
-                                <h5 class="text-sm-center"><strong>{{ $data->fname }} {{ $data->lname }}</strong></h5>
+                                <h5 class="text-sm-center"><strong>{{ $data->lname }}, {{ $data->fname }}</strong></h5>
                                 <div class="location text-sm-center">
                                     <strong>Hospital # :</strong> {{ ($data->hospitalNum==null) ? 'N/A': $data->hospitalNum }}<br />
                                     <strong>Section :</strong> {{ \App\Http\Controllers\AbbrCtrl::equiv($data->section) }}
