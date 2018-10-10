@@ -86,3 +86,4 @@ Route::get('sample',function(){
     $obj = (object)$data;
     echo $obj->fname;
 });
+

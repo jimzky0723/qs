@@ -29,7 +29,7 @@
         }
         .cardNum {
             text-align: center;
-            font-size: 140px;
+            font-size: 110px;
             line-height: 150px;
             background: #2cc185;
             padding: 20px;

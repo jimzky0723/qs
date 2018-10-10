@@ -226,6 +226,28 @@
             //initialize the javascript
             App.init();
             $('form').parsley();
+
+            {{--var data = '';--}}
+            $.get("{{ url('api/get/data') }}",function(data){
+                //var tmp = jQuery.parseJSON(data);
+                console.log(data);
+            });
+            {{--$.when($.get("{{ url('api/get/data') }}",function(age){--}}
+                {{--data = age;--}}
+            {{--})).then(function(){--}}
+                {{--console.log('Your age is: ' + data);--}}
+            {{--});--}}
+            var data = [
+                [1, 25],
+                [2, 10],
+                [3, 10],
+                [4, 15],
+                [5, 0],
+                [6, 47],
+                [7, 65],
+                [8, 10]
+            ];
+            console.log(data);
         });
 
     </script>

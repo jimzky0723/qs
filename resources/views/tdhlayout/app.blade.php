@@ -23,6 +23,7 @@
         }
     </style>
 <body>
+
 <nav class="navbar navbar-expand navbar-dark mai-top-header">
     <div class="container"><a href="#" class="navbar-brand"></a>
         <!--Left Menu-->
@@ -70,6 +71,8 @@
     }
     $('a[href="'+filename+'"]').addClass('active');
     $('a[href="'+filename+'"]').parent().parent().parent().addClass('open');
+
+    $(".loading").show();
 </script>
 </body>
 </html>
