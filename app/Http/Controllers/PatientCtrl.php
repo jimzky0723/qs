@@ -8,6 +8,7 @@ use App\ListPatients;
 use App\Number;
 use App\Pending;
 use App\Vital;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -22,6 +23,7 @@ class PatientCtrl extends Controller
     {
         $list = ListPatients::where('step',0)
             ->where('fname','!=','')
+            ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
             ->orderBy('priority','desc')
             ->limit(10)
             ->get();
@@ -142,7 +144,8 @@ class PatientCtrl extends Controller
         {
             $next = Vital::select('vital.id','vital.patientId')
                 ->join('list','list.id','=','vital.patientId')
-                ->where('station',0);
+                ->where('station',0)
+                ->whereBetween('vital.created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()]);
 
             if($station==3){
                 $next = $next->where('section','ob');
@@ -257,6 +260,7 @@ class PatientCtrl extends Controller
             ->join('list','list.id','=','consultation.patientId')
             ->where('consultation.status',0)
             ->where('consultation.section',$section)
+            ->whereBetween('consultation.created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
             ->orderBy('list.priority','desc')
             ->first();
 
@@ -332,22 +336,58 @@ class PatientCtrl extends Controller
         return redirect()->back()->with('section',$section);
     }
 
-    static function getPendingList($step,$section=null)
+    static function getPendingList($step,$section=null,$station=null)
     {
         if($section){
             $data = array(
-                'pedia' => ListPatients::where('step',3)->where('section','pedia')->count(),
-                'im' => ListPatients::where('step',3)->where('section','im')->count(),
-                'surgery' => ListPatients::where('step',3)->where('section','surgery')->count(),
-                'ob' => ListPatients::where('step',3)->where('section','ob')->count(),
-                'dental' => ListPatients::where('step',3)->where('section','dental')->count(),
-                'bite'  => ListPatients::where('step',3)->where('section','bite')->count()
+                'pedia' => ListPatients::where('step',3)->where('section','pedia')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'im' => ListPatients::where('step',3)->where('section','im')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'surgery' => ListPatients::where('step',3)->where('section','surgery')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'ob' => ListPatients::where('step',3)->where('section','ob')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'dental' => ListPatients::where('step',3)->where('section','dental')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'bite'  => ListPatients::where('step',3)->where('section','bite')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count()
             );
             return $data;
         }
+
+
         $count = ListPatients::where('step',$step)
+                ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()]);
+        if($station==3)
+        {
+            $count = $count->where('section','ob');
+        }else{
+            $count = $count->where('section','!=','ob');
+        }
+        $count = $count->count();
+
+
+        $minus = Vital::where('station','!=',0)
+                    ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()]);
+        if($station==3)
+        {
+            $minus = $minus->where('station',$station);
+        }else{
+            $minus = $minus->where('station','!=',3);
+        }
+        $minus = $minus->count();
+
+        $count -= $minus;
+        return $count;
+    }
+
+    static function getPendingListOB()
+    {
+        $count = ListPatients::where('step',2)
+                ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
+                ->where('section','ob')
                 ->count();
-        $minus = Vital::where('station','!=',0)->count();
+
+
+        $minus = Vital::where('station','!=',0)
+                    ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
+                    ->where('station',3)
+                    ->count();
         $count -= $minus;
         return $count;
     }

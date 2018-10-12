@@ -2,6 +2,7 @@
 
 @section('head')
     <link rel="stylesheet" href="{{ url('resources/tdh/css/loader.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/jquery.fullcalendar/fullcalendar.min.css"/>
 @endsection
 
 @section('content')
@@ -24,20 +25,20 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widget widget-fullwidth ads-chart">
-                    <div class="widget-head"><span class="title">Age Bracket</span></div>
+                    <div class="widget-head"><span class="title">Age Bracket ({{ date('F') }})</span></div>
                     <div class="ads-resume">
                         <div class="ads-info">
                             <div id="ads-chart-legend" class="ads-legend"></div>
                         </div>
                         <div class="ads-users">
                             <div class="widget-chart-container">
-                                <div id="users-chart" style="height: 153px;"></div>
+                                <div id="users-chart" style="height: 160px;"></div>
                                 <div class="users-chart-counter"><span data-toggle="counter" data-end="{{ $countPatient->month }}" class="users-counter">0</span><span class="users-title">Overall</span></div>
                             </div>
                         </div>
                     </div>
                     <div class="widget-chart-container">
-                        <div id="ads-chart" style="height: 229px;"></div>
+                        <div id="ads-chart" style="height: 219px;"></div>
                     </div>
                 </div>
             </div>
@@ -86,19 +87,32 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget widget-fullwidth user-develop-chart">
-                    <div class="widget-head">
-                        <div class="tools"><span class="icon s7-cloud-download"></span><span class="icon s7-refresh-2"></span></div><span class="title">Consultation Activity</span>
-                    </div>
-                    <div class="widget-chart-container">
-                        <div id="develop-chart-legend" class="legend-container"></div>
-                        <div id="develop-chart" style="height: 225px;"></div>
+        <div class="row full-calendar">
+            <div class="col-md-9">
+                <div class="panel panel-default panel-fullcalendar">
+                    <div class="panel-body">
+                        <div id="calendar"></div>
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-3">
+                <div class="panel panel-default fullcalendar-external-events">
+                    <div class="panel-heading panel-heading-divider">Draggable Events</div>
+                    <div class="panel-body">
+                        <div id="external-events">
+                            <div class="fc-event">My Event 1</div>
+                            <div class="fc-event">My Event 2</div>
+                            <div class="fc-event">My Event 3</div>
+                            <div class="fc-event">My Event 4</div>
+                            <div class="fc-event">My Event 5</div>
+                            <p>
+                                <input id="drop-remove" type="checkbox">
+                                <label for="drop-remove">remove after drop</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -113,8 +127,11 @@
     <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/plugins/jquery.flot.tooltip.js" type="text/javascript"></script>
     <script src="{{ url('resources/tdh/') }}/lib/countup/countUp.min.js" type="text/javascript"></script>
     <script src="{{ url('resources/tdh/') }}/js/dashboard.js" type="text/javascript"></script>
+    <script src="{{ url('resources/tdh/') }}/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+    <script src="{{ url('resources/tdh/') }}/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{ url('resources/tdh/') }}/lib/jquery.fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="{{ url('resources/tdh/') }}/js/calendar.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $("#loader-wrapper").show();
         $(document).ready(function(){
             //initialize the javascript
             $.when($.get("{{ url('api/get/data') }}",function(data){
@@ -124,9 +141,8 @@
             }))
             .then(function(data){
                 App.init();
-                console.log(data.weekly);
+                App.pageCalendar();
                 App.dashboard(data);
-
             });
             var url = "{{ url('/') }}";
 

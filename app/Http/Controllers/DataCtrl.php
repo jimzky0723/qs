@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ListPatients;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataCtrl extends Controller
 {
@@ -16,16 +17,9 @@ class DataCtrl extends Controller
     public function getData()
     {
         $data = array();
-        $weekly[] = array(1,1);
-        $weekly[] = array(2,2);
-        $weekly[] = array(3,1);
-        $weekly[] = array(4,3);
-        $weekly[] = array(5,2);
-        $weekly[] = array(6,1);
-        $weekly[] = array(7,2);
 
-        $data['total'] = self::countTotalMonth();
-        $data['weekly'] = $weekly;
+        $data['total'] = self::countTotalWeek();
+        $data['weekly'] = self::weeklyActivity();
         $data['child'] = 4;
         $data['adolescence'] = 2;
         $data['young'] = 3;
@@ -35,14 +29,41 @@ class DataCtrl extends Controller
         return $data;
     }
 
+    static function weeklyActivity()
+    {
+        $weekly = array();
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        $startDay = Carbon::now()->startOfWeek();
+        for($c=1; $c <= 7; $c++)
+        {
+            $start = Carbon::parse($startDay)->startOfDay();
+            $end = Carbon::parse($startDay)->endOfDay();
+
+            $count = ListPatients::whereBetween('created_at',[$start,$end])
+                ->count();
+            $weekly[] = array($c,$count);
+            $startDay = $startDay->addDay();
+        }
+        return $weekly;
+    }
+
+    public function sample()
+    {
+        $list = ListPatients::whereBetween(DB::raw('TIMESTAMPDIFF(YEAR,dob,CURDATE())'),array(17,41))->get();
+        foreach($list as $row){
+            echo $row->id . '<br>';
+        }
+    }
+
     static function calculatePercentage($last,$now)
     {
         if($last == 0)
-        {
             return 0;
-        }
 
         $n = $now - $last;
+        if($n==0)
+            return 0;
+
         $p = ($n/$last) * 100;
         return number_format($p,1);
     }

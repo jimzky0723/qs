@@ -71,7 +71,7 @@
                         <div class="panel panel-border-color panel-border-color-info">
                             <div class="panel-heading panel-heading-divider">
                                 Vital {{ $c }}
-                                <span class="badge badge-info">Waiting: {{ \App\Http\Controllers\PatientCtrl::getPendingList(2) }}</span>
+                                <span class="badge badge-info badge-{{$c}}">Waiting: {{ \App\Http\Controllers\PatientCtrl::getPendingList(2,'',$c) }}</span>
                             </div>
                             <div class="panel-body">
                                 <div class="emptyNum">
@@ -185,10 +185,18 @@
             var data = JSON.parse(event.data);
             if(data.channel=='addNumber' && data.section=='vital'){
                 $.get(
-                    '{{ url('patient/count/2') }}',
+                    '{{ url('patient/count/2/') }}',
                     function(data){
                         console.log(data);
-                        $('.badge').html('Waiting: ' + data);
+                        $('.badge-1').html('Waiting: ' + data);
+                        $('.badge-2').html('Waiting: ' + data);
+                    }
+                );
+                $.get(
+                    '{{ url('patient/count/vital/ob') }}',
+                    function(data){
+                        console.log(data);
+                        $('.badge-3').html('Waiting: ' + data);
                     }
                 );
             }

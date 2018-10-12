@@ -46,8 +46,11 @@ Route::get('patient/consultation/cancel/{id}','PatientCtrl@consultationCancel');
 Route::get('patient/list','PatientCtrl@patientList');
 Route::post('patient/list','PatientCtrl@searchPatient');
 
+Route::get('patient/count/vital/ob','PatientCtrl@getPendingListOB');
 Route::get('patient/count/{step}','PatientCtrl@getPendingList');
 Route::get('patient/count/{step}/{section}','PatientCtrl@getPendingList');
+
+
 
 Route::get('patient/forward/{section}/{id}','PatientCtrl@forwardPatient');
 
