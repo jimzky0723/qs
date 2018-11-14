@@ -90,3 +90,6 @@ Route::get('sample',function(){
     echo $obj->fname;
 });
 
+Route::get('print','PrintCtrl@index');
+Route::get('print/store/{number}/{section}','PrintCtrl@store');
+

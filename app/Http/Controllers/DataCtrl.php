@@ -20,13 +20,56 @@ class DataCtrl extends Controller
 
         $data['total'] = self::countTotalWeek();
         $data['weekly'] = self::weeklyActivity();
-        $data['child'] = 4;
-        $data['adolescence'] = 2;
-        $data['young'] = 3;
-        $data['middle'] = 6;
-        $data['old'] = 9;
+        $data['pedia'] = self::countPerSectionInMonth('pedia');
+        $data['im'] = self::countPerSectionInMonth('im');
+        $data['surgery'] = self::countPerSectionInMonth('surgery');
+        $data['ob'] = self::countPerSectionInMonth('ob');
+        $data['dental'] = self::countPerSectionInMonth('dental');
+        $data['bite'] = self::countPerSectionInMonth('bite');
+        $data['weeklySection'] = self::weeklyActivityBySection();
 
         return $data;
+    }
+
+    static function countPerSectionInMonth($section)
+    {
+        $count = ListPatients::whereBetween('created_at',[Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
+            ->where('section',$section)
+            ->count();
+        return $count;
+    }
+
+    static function weeklyActivityBySection()
+    {
+        $sections = array(
+            'pedia',
+            'im',
+            'surgery',
+            'ob',
+            'dental',
+            'bite'
+        );
+
+        $weekly = array();
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+
+        foreach($sections as $section){
+            $startDay = Carbon::now()->startOfWeek();
+            for($c=1; $c <= 7; $c++)
+            {
+                $start = Carbon::parse($startDay)->startOfDay();
+                $end = Carbon::parse($startDay)->endOfDay();
+
+                $count = ListPatients::whereBetween('created_at',[$start,$end])
+                    ->where('section',$section)
+                    ->count();
+
+                $weekly[$section][] = array($c,$count);
+                $startDay = $startDay->addDay();
+            }
+        }
+
+        return $weekly;
     }
 
     static function weeklyActivity()

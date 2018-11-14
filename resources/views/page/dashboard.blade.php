@@ -48,7 +48,7 @@
                         <div class="indicator-item-icon">
                             <div class="icon" style="color: #fff;"><span class="s7-date"></span></div>
                         </div>
-                        <div class="indicator-item-value"><span data-toggle="counter" data-end="{{ date('d') }}" class="indicator-value-counter">0</span>
+                        <div class="indicator-item-value"><em>({{ date("l") }})</em> <span data-toggle="counter" data-end="{{ date('d') }}" class="indicator-value-counter">0</span>
                             <div class="indicator-value-title">{{ date('F') }}, {{ date('Y') }}</div>
                         </div>
                     </div>
@@ -96,19 +96,22 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="panel panel-default fullcalendar-external-events">
-                    <div class="panel-heading panel-heading-divider">Draggable Events</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-divider">October Events</div>
                     <div class="panel-body">
-                        <div id="external-events">
-                            <div class="fc-event">My Event 1</div>
-                            <div class="fc-event">My Event 2</div>
-                            <div class="fc-event">My Event 3</div>
-                            <div class="fc-event">My Event 4</div>
-                            <div class="fc-event">My Event 5</div>
-                            <p>
-                                <input id="drop-remove" type="checkbox">
-                                <label for="drop-remove">remove after drop</label>
-                            </p>
+                        <div class="mt-3">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <span class="text">First friday mass</span>
+                                    <br />
+                                    <small class="text-success">October 5</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <span class="text">Happy fiesta talisay</span>
+                                    <br />
+                                    <small class="text-success">October 25</small>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,21 +133,21 @@
     <script src="{{ url('resources/tdh/') }}/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
     <script src="{{ url('resources/tdh/') }}/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <script src="{{ url('resources/tdh/') }}/lib/jquery.fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/js/calendar.js" type="text/javascript"></script>
+    <script src="{{ url('resources/tdh/') }}/js/calendar.js?v=1" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //initialize the javascript
             $.when($.get("{{ url('api/get/data') }}",function(data){
+                console.log(data);
                 setTimeout(function(){
                     $("#loader-wrapper").fadeOut(500);
                 },2000);
             }))
-            .then(function(data){
-                App.init();
-                App.pageCalendar();
-                App.dashboard(data);
-            });
-            var url = "{{ url('/') }}";
+                .then(function(data){
+                    App.init();
+                    App.pageCalendar();
+                    App.dashboard(data);
+                });
 
         });
     </script>

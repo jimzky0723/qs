@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('get/data','DataCtrl@getData');
 
-Route::get('data','DataCtrl@countLastWeek');
+Route::get('data','DataCtrl@weeklyActivityBySection');
