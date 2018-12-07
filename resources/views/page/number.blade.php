@@ -286,7 +286,7 @@
                     url: "{{ url('print/store') }}/"+number+"/"+equiv,
                     type: "GET",
                     success: function(){
-                        window.open("http://localhost/tdh/qs/print");
+
                     }
                 });
             }

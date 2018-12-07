@@ -92,4 +92,3 @@ Route::get('sample',function(){
 
 Route::get('print','PrintCtrl@index');
 Route::get('print/store/{number}/{section}','PrintCtrl@store');
-
