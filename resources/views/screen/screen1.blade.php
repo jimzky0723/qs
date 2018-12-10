@@ -165,7 +165,7 @@
                 </td>
                 <td width="50%" colspan="2" rowspan="3">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <video class="embed-responsive-item" id="myvideo" style="background:#000">
+                        <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
                             <source src="{{ url('videos/kain.mp4') }}" type="video/mp4">
                         </video>
                     </div>
