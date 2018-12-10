@@ -283,7 +283,7 @@
             $('#txtPriority').val(priority);
             if(number){
                 $.ajax({
-                    url: "{{ url('print/store') }}/"+number+"/"+equiv,
+                    url: "{{ url('print/store') }}/"+number+"/"+equiv+"/"+priority,
                     type: "GET",
                     success: function(){
 

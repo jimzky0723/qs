@@ -14,7 +14,7 @@ class PrintCtrl extends Controller
         return view('print');
     }
 
-    public function store($number,$section)
+    public function store($number,$section,$priority=0)
     {
         $date = date('M d, Y h:i A');
 
@@ -32,8 +32,11 @@ class PrintCtrl extends Controller
             $printer->setEmphasis(true); //bold characters
             $printer->text("TALISAY DISTRICT HOSPITAL \n");
             $printer->text("Out Patient Department \n");
-
             $printer->setEmphasis(false);
+            if($priority==1)
+            {
+                $printer->text("Priority Lane\n");
+            }
             $printer->text("---------------------------------------\n");
             $printer->setTextSize(6,6);
             $printer->text("$number\n");
@@ -42,7 +45,7 @@ class PrintCtrl extends Controller
 
             $printer->setEmphasis(true); //bold characters
             $printer->setFont($printer::FONT_C);
-            $printer->text("Pedia \n");
+            $printer->text("$section \n");
 
             $printer->setEmphasis(false);
 
