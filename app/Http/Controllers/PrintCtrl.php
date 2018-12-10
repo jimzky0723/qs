@@ -16,8 +16,10 @@ class PrintCtrl extends Controller
 
     public function store($number,$section)
     {
-        $date = date('F d, Y');
-        $time = date('h:i A');
+        $date = date('M d, Y h:i A');
+
+
+
         try {
             // Enter the share name for your USB printer here
             //$connector = "POS-58";
@@ -26,33 +28,70 @@ class PrintCtrl extends Controller
             /* Print a "Hello world" receipt" */
             $printer = new Printer($connector);
             /* Name of shop */
-            $printer->selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-            $printer->setJustification(Printer::JUSTIFY_CENTER);
-            $printer->setTextSize(1,2);
-            $printer->text("Talisay District Hospital\n");
-            $printer->feed();
+            $printer->setJustification($printer::JUSTIFY_CENTER);
+            $printer->setEmphasis(true); //bold characters
+            $printer->text("TALISAY DISTRICT HOSPITAL \n");
+            $printer->text("Out Patient Department \n");
 
-            $printer->selectPrintMode();
-            $printer->text("-----------------------------------------------\n");
-
-            $printer->setTextSize(8,7);
+            $printer->setEmphasis(false);
+            $printer->text("---------------------------------------\n");
+            $printer->setTextSize(6,6);
             $printer->text("$number\n");
-
             $printer->selectPrintMode();
-            $printer->text("-----------------------------------------------\n");
+            $printer->text("---------------------------------------\n");
 
-            $printer->setTextSize(2,2);
-            $printer->text("$section\n");
+            $printer->setEmphasis(true); //bold characters
+            $printer->setFont($printer::FONT_C);
+            $printer->text("Pedia \n");
 
-            $printer->selectPrintMode();
+            $printer->setEmphasis(false);
+
             $printer->text("$date\n");
-            $printer->text("$time\n");
 
-            $printer->feed();
-            /* Title of receipt */
-            $printer->setEmphasis(true);
+            /* Cut the receipt and open the cash drawer */
+            $printer->cut();
+            $printer->pulse();
+            /* Close printer */
+            $printer->close();
+            // echo "Sudah di Print";
+            return 1;
+        } catch (Exception $e) {
+            $message = "Couldn't print to this printer: " . $e->getMessage() . "\n";
+            return 0;
+        }
+    }
 
-            $printer->feed(2);
+    public function prints()
+    {
+
+        try {
+            // Enter the share name for your USB printer here
+            //$connector = "POS-58";
+            //$connector = new WindowsPrintConnector("POS-58");
+            $connector = new WindowsPrintConnector("EPSONTM-T82II");
+            /* Print a "Hello world" receipt" */
+            $printer = new Printer($connector);
+            /* Name of shop */
+            $printer->setJustification($printer::JUSTIFY_CENTER);
+            $printer->setEmphasis(true); //bold characters
+            $printer->text("TALISAY DISTRICT HOSPITAL \n");
+            $printer->text("Out Patient Department \n");
+
+            $printer->setEmphasis(false);
+            $printer->text("---------------------------------------\n");
+            $printer->setTextSize(6,6);
+            $printer->text("P1\n");
+            $printer->selectPrintMode();
+            $printer->text("---------------------------------------\n");
+
+            $printer->setEmphasis(true); //bold characters
+            $printer->setFont($printer::FONT_C);
+            $printer->text("Pedia \n");
+
+            $printer->setEmphasis(false);
+
+            $printer->text("Dec 10,2018 9:53 AM\n");
+
 
             /* Cut the receipt and open the cash drawer */
             $printer->cut();
