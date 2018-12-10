@@ -18,6 +18,8 @@ class PrintCtrl extends Controller
     {
         $date = date('M d, Y h:i A');
 
+        if($section=="OB")
+            $section = "OB-Gyne";
 
 
         try {

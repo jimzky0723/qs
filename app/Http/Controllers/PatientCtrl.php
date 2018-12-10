@@ -466,13 +466,15 @@ class PatientCtrl extends Controller
     public function forwardPatient($section,$id)
     {
         $data = ListPatients::find($id);
+        $start = Carbon::now()->startOfDay();
+        $end = Carbon::now()->endOfDay();
 
         $chkOtherStation = self::checkOtherStation($id);
         if($chkOtherStation)
             return redirect()->back()->with('pending',$chkOtherStation);
 
         if($section=='card'){
-            $check = Card::count();
+            $check = Card::whereBetween('created_at',[$start,$end])->count();
             if($check)
                 return redirect()->back()->with('busy','Card Issuance');
 
@@ -482,7 +484,7 @@ class PatientCtrl extends Controller
 
             return self::processForward($data,1,$section,'Card Issuance',$data->num,$data->priority,$data->section);
         }else if($section == 'vital1'){
-            $check = Vital::where('station',1)->count();
+            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',1)->count();
             if($check)
                 return redirect()->back()->with('busy','Vital Station 1');
 
@@ -493,7 +495,7 @@ class PatientCtrl extends Controller
 
             return self::processForward($data,2,$section,'Vital Station 1',$data->num,$data->priority,$data->section);
         }else if($section == 'vital2'){
-            $check = Vital::where('station',2)->count();
+            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',2)->count();
             if($check)
                 return redirect()->back()->with('busy','Vital Station 2');
 
@@ -505,7 +507,7 @@ class PatientCtrl extends Controller
             return self::processForward($data,2,$section,'Vital Station 2',$data->num,$data->priority,$data->section);
         }else if($section == 'vital3'){
 
-            $check = Vital::where('station',3)->count();
+            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',3)->count();
             if($check)
                 return redirect()->back()->with('busy','Vital Station 3');
 
@@ -522,8 +524,9 @@ class PatientCtrl extends Controller
             if($section!=$data->section)
                 return redirect()->back()->with('invalid', AbbrCtrl::equiv($section));
 
-            $check = Consultation::where('section',$section)->count();
+            $check = Consultation::whereBetween('created_at',[$start,$end])->where('status',1)->where('section',$section)->count();
             if($check)
+//                print_r($check);
                 return redirect()->back()->with('busy', AbbrCtrl::equiv($section));
 
 
@@ -554,11 +557,14 @@ class PatientCtrl extends Controller
 
     public function checkOtherStation($id)
     {
-        if(Card::where('patientId',$id)->first())
+        $start = Carbon::now()->startOfDay();
+        $end = Carbon::now()->endOfDay();
+
+        if(Card::where('patientId',$id)->whereBetween('created_at',[$start,$end])->first())
             return 'issuing card.';
-        else if(Vital::where('patientId',$id)->first())
+        else if(Vital::where('patientId',$id)->whereBetween('created_at',[$start,$end])->first())
             return 'vital station.';
-        else if(Consultation::where('patientId',$id)->where('status',1)->first())
+        else if(Consultation::where('patientId',$id)->whereBetween('created_at',[$start,$end])->where('status',1)->first())
             return 'consultation.';
         else
             return false;
