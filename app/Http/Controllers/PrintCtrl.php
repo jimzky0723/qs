@@ -35,7 +35,7 @@ class PrintCtrl extends Controller
             $printer->setEmphasis(false);
             if($priority==1)
             {
-                $printer->text("Priority Lane\n");
+                $printer->text("<Priority Lane>\n");
             }
             $printer->text("---------------------------------------\n");
             $printer->setTextSize(6,6);
