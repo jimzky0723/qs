@@ -213,6 +213,7 @@ class AdminCtrl extends Controller
             ->update([
                 'value' => $req->url
             ]);
+        Session::put('socket',$req->url);
         return redirect()->back()->with('status','urlUpdated');
     }
 
