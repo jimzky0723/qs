@@ -356,7 +356,6 @@
         $param = \App\Parameters::where('description','socket')->first()->value;
         $param = "ws://".$_SERVER['SERVER_NAME'].":$param";
     ?>
-    console.log("{{ $param }}");
     var sock = new WebSocket('{{ $param }}');
 
     var playAudio = function(data){

@@ -59,7 +59,11 @@
 <script src="{{ url('/') }}/js/app.js" type="text/javascript"></script>
 <script src="{{ url('/') }}/lib/theme-switcher/theme-switcher.min.js" type="text/javascript"></script>
 <script>
-    var sock = new WebSocket('{{ \Illuminate\Support\Facades\Session::get('socket') }}');
+    <?php
+        $param = \App\Parameters::where('description','socket')->first()->value;
+        $param = "ws://".$_SERVER['SERVER_NAME'].":$param";
+    ?>
+    var sock = new WebSocket('{{ $param }}');
 </script>
 @yield('script')
 <script>
