@@ -4,3 +4,11 @@
 4. run this command
 
 nodemon index.js
+
+** if not ws is not working, try allowing it in firewall
+
+* go to
+Control Panel\System and Security\Windows Defender Firewall\Allowed apps
+
+* allow this app
+C:\program files\nodejs\node.exe
