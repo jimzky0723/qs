@@ -89,15 +89,15 @@
                         <form method="post" action="{{ url('settings/parameters/url/update') }}">
                         {{ csrf_field() }}
                         <div class="input-group mb-2">
-                            <div class="input-group-prepend"><span class="input-group-text">Server IP Address</span></div>
-                            <input type="text" placeholder="192.168.1.0" name="url" class="form-control" value="{{ $url }}">
+                            <div class="input-group-prepend"><span class="input-group-text">WS Port</span></div>
+                            <input type="text" placeholder="5001" name="url" class="form-control" value="{{ $url }}">
 
                             <button class="btn btn-success" type="submit">
                                 <i class="fa fa-check"></i> Update
                             </button>
                         </div>
                         <small class="text-muted">
-                            (Example: ws://localhost:5001)
+                            (Example: 5001)
                         </small>
                         </form>
                     </div>
