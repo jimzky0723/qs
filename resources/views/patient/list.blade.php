@@ -4,14 +4,18 @@
     $busy = session('busy');
     $pending = session('pending');
     $info = session('info');
+    $success = session('success');
     if($info){
         $info = (object)$info;
+    }
+    if($success){
+        $success = (object)$success;
     }
 ?>
 @extends('tdhlayout.app')
 
 @section('head')
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/datepicker/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/datepicker/css/bootstrap-datepicker3.min.css"/>
 @endsection
 @section('content')
     <div class="main-content container">
@@ -73,6 +77,14 @@
                         <div class="icon"><span class="s7-check"></span></div>
                         <div class="message"><strong>Forwarded!</strong> Patient successfully forwarded to {{ $info->forward }}.</div>
                     </div>
+                    @endif
+
+                    @if($success)
+                        <hr />
+                        <div role="alert" class="alert alert-success">
+                            <div class="icon"><span class="s7-check"></span></div>
+                            <div class="message"><strong>Forwarded!</strong> Patient successfully forwarded to {{ $success->forward }}.</div>
+                        </div>
                     @endif
 
                     @if(count($data) > 0)
@@ -168,11 +180,11 @@
 @endsection
 
 @section('script')
-    <script src="{{ url('resources/tdh/') }}/lib/select2/js/select2.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/bootstrap-slider/bootstrap-slider.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/select2/js/select2.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/bootstrap-slider/bootstrap-slider.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ url('/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //initialize the javascript
@@ -212,18 +224,18 @@
         })
     </script>
     <script>
-        @if($info)
-        sock.onopen = function() {
-            sock.send(JSON.stringify({
-                section: "{{ $info->section }}",
-                number: "{{ \App\Http\Controllers\NumberCtrl::initialSection($info->sec) }}{{ $info->num }}",
-                priority: "{{ $info->priority }}"
-            }));
+{{--        @if($info)--}}
+{{--        sock.onopen = function() {--}}
+{{--            sock.send(JSON.stringify({--}}
+{{--                section: "{{ $info->section }}",--}}
+{{--                number: "{{ \App\Http\Controllers\NumberCtrl::initialSection($info->sec) }}{{ $info->num }}",--}}
+{{--                priority: "{{ $info->priority }}"--}}
+{{--            }));--}}
 
-            sock.send(JSON.stringify({
-                channel: 'pending'
-            }));
-        };
-        @endif
+{{--            sock.send(JSON.stringify({--}}
+{{--                channel: 'pending'--}}
+{{--            }));--}}
+{{--        };--}}
+{{--        @endif--}}
     </script>
 @endsection

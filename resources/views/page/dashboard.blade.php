@@ -1,8 +1,8 @@
 @extends('tdhlayout.app')
 
 @section('head')
-    <link rel="stylesheet" href="{{ url('resources/tdh/css/loader.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/jquery.fullcalendar/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="{{ url('/css/loader.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/jquery.fullcalendar/fullcalendar.min.css"/>
 @endsection
 
 @section('content')
@@ -121,19 +121,19 @@
 @endsection
 
 @section('script')
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/jquery.flot.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/jquery.flot.pie.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/jquery.flot.time.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/jquery.flot.resize.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/plugins/jquery.flot.orderBars.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/plugins/curvedLines.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-flot/plugins/jquery.flot.tooltip.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/countup/countUp.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/js/dashboard.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery.fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/js/calendar.js?v=1" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/jquery.flot.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/jquery.flot.pie.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/jquery.flot.time.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/jquery.flot.resize.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/plugins/jquery.flot.orderBars.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/plugins/curvedLines.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-flot/plugins/jquery.flot.tooltip.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/countup/countUp.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/js/dashboard.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery.fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/js/calendar.js?v=1" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //initialize the javascript

@@ -1,0 +1,6 @@
+1. install node.js
+2. npm install -g nodemon (-g means global)
+3. Go to <app>/websocket
+4. run this command
+
+nodemon index.js

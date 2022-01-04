@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="{{ url('resources/tdh/') }}/img/favicon.png">
+    <link rel="shortcut icon" href="{{ url('/') }}/img/favicon.png">
     <title>Login: QueSystem</title>
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/stroke-7/style.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh/') }}/lib/theme-switcher/theme-switcher.min.css"/>
-    <link type="text/css" href="{{ url('resources/tdh/') }}/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/stroke-7/style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/theme-switcher/theme-switcher.min.css"/>
+    <link type="text/css" href="{{ url('/') }}/css/app.css" rel="stylesheet">
 </head>
 <body class="mai-splash-screen">
 <div class="mai-wrapper mai-login">
     <div class="main-content container">
         <div class="splash-container row">
             <div class="col-md-6 user-message"><span class="splash-message text-right">Hello!<br> it's good to<br> see you again</span><span class="alternative-message text-right"><a href="{{ url('/screen') }}" target="_blank">Go to Queuing Screen</a></span></div>
-            <div class="col-md-6 form-message"><img src="{{ url('resources/tdh/') }}/img/logo-2x.png" alt="logo" width="169" height="28" class="logo-img mb-4"><span class="splash-description text-center mt-5 mb-5">Login to your account</span>
+            <div class="col-md-6 form-message"><img src="{{ url('/') }}/img/logo-2x.png" alt="logo" width="169" height="28" class="logo-img mb-4"><span class="splash-description text-center mt-5 mb-5">Login to your account</span>
                 <form method="post" action="{{ url('login') }}">
                     {{ csrf_field() }}
                     @if($status=='error')
@@ -62,11 +62,11 @@
         </div>
     </div>
 </div>
-<script src="{{ url('resources/tdh/') }}/lib/jquery/jquery.min.js" type="text/javascript"></script>
-<script src="{{ url('resources/tdh/') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-<script src="{{ url('resources/tdh/') }}/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script src="{{ url('resources/tdh/') }}/js/app.js" type="text/javascript"></script>
-<script src="{{ url('resources/tdh/') }}/lib/theme-switcher/theme-switcher.min.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/lib/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/js/app.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/lib/theme-switcher/theme-switcher.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         //initialize the javascript

@@ -1,1 +1,7 @@
+- Create shortcut of chrome
+- Open properties
+- In shortcut tab, edit "target"
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk --kiosk-printing http://localhost/tdh/qs
+
 --kiosk --kiosk-printing http://localhost/tdh/qs

@@ -17,7 +17,7 @@ class CreateListTable extends Migration
             $table->increments('id');
             $table->string('fname');
             $table->string('lname');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('hospitalNum');
             $table->integer('num');
             $table->integer('priority');

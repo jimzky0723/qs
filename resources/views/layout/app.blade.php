@@ -16,17 +16,17 @@
     <title>TDH - Queuing System</title>
 
     <!-- Fontfaces CSS-->
-    <link href="{{ url('resources/layout/') }}/css/font-face.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/css/font-face.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <!-- Bootstrap CSS-->
-    <link href="{{ url('resources/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
 
     <!-- Main CSS-->
-    <link href="{{ url('resources/layout/') }}/css/theme.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/css/theme.css" rel="stylesheet" media="all">
 
 </head>
 
@@ -50,7 +50,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="{{ url('resources/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
+                                        <img src="{{ url('/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#">{{ $user->fname }} {{ $user->lname }}</a>
@@ -59,7 +59,7 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="{{ url('resources/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
+                                                    <img src="{{ url('/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -110,16 +110,16 @@
 
 @yield('modal')
 <!-- Jquery JS-->
-<script src="{{ url('resources/layout/') }}/vendor/jquery-3.2.1.min.js"></script>
+<script src="{{ url('/layout/') }}/vendor/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap JS-->
 
-<script src="{{ url('resources/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="{{ url('/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 
-<script src="{{ url('resources/layout/') }}/vendor/animsition/animsition.min.js"></script>
+<script src="{{ url('/layout/') }}/vendor/animsition/animsition.min.js"></script>
 
 
 <!-- Main JS-->
-<script src="{{ url('resources/layout/') }}/js/script.js"></script>
+<script src="{{ url('/layout/') }}/js/script.js"></script>
 <script>
     var sock = new WebSocket('{{ \Illuminate\Support\Facades\Session::get('socket') }}');
 </script>

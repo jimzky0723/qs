@@ -34,8 +34,8 @@ class ScreenCtrl extends Controller
 
     static function getNumber($section)
     {
-        $data = Number::where('section',$section)
-            ->first();
+        $data = optional(Number::where('section',$section)
+            ->first());
 
         if($data->num <= 0){
             $data->num = '&nbsp';

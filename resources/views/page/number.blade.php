@@ -3,7 +3,7 @@
 ?>
 @extends('tdhlayout.app')
 @section('head')
-    <link rel="stylesheet" type="text/css" href="{{ url('resources/tdh') }}/lib/jquery.gritter/css/jquery.gritter.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/jquery.gritter/css/jquery.gritter.css"/>
 @endsection
 @section('content')
 
@@ -37,45 +37,45 @@
             color: #000;
         }
     </style>
-    <div class="main-content container">
+    <div class="main-content col-lg-12 p-5">
         <div class="row">
             <div class="col-md-7">
                 <div class="panel panel-border-color panel-border-color-primary">
                     <div class="panel-heading panel-heading-divider">Get Priority Number</div>
                     <div class="panel-body">
                         <div class="mt-1 mb-1 text-center">
-                            <button data-modal="modal-senior" class="btn btn-space btn-success btn-big col-sm-5 md-trigger">
+                            <button data-modal="modal-senior" class="btn btn-space btn-success btn-big p-4 col-sm-5 md-trigger">
                                 <i class="icon fa fa-wheelchair"></i> Senior/Pregnant/PWD
                             </button>
-                            <button class="btn btn-space btn-info hover btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="pedia" data-equiv="Pedia" data-priority="0" data-number="{{ $sectionNumber['pedia'] }}">
+                            <button class="btn btn-space btn-info hover btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="pedia" data-equiv="Pedia" data-priority="0" data-number="{{ $sectionNumber['pedia'] }}">
                                 <i class="icon fa fa-stethoscope"></i>
                                 Pedia
                                 <span class="badge lastNumber">{{ $sectionNumber['pedia'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
-                            <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="0" data-number="{{ $sectionNumber['im'] }}">
+                            <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="0" data-number="{{ $sectionNumber['im'] }}">
                                 <i class="icon fa fa-stethoscope"></i> Internal Medicine
                                 <span class="badge lastNumber">{{ $sectionNumber['im'] }}</span>
                             </button>
-                            <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0" data-number="{{ $sectionNumber['surgery'] }}">
+                            <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0" data-number="{{ $sectionNumber['surgery'] }}">
                                 <i class="icon fa fa-stethoscope"></i>
                                 Surgery
                                 <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
-                            <button class="btn btn-space btn-ob btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="0" data-number="{{ $sectionNumber['ob'] }}">
+                            <button class="btn btn-space btn-ob btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="0" data-number="{{ $sectionNumber['ob'] }}">
                                 <i class="icon fa fa-stethoscope"></i> OB
                                 <span class="badge lastNumber">{{ $sectionNumber['ob'] }}</span>
                             </button>
-                            <button class="btn btn-space btn-dental btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="0" data-number="{{ $sectionNumber['dental'] }}">
+                            <button class="btn btn-space btn-dental btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="0" data-number="{{ $sectionNumber['dental'] }}">
                                 <i class="icon fa fa-stethoscope"></i> Dental
                                 <span class="badge lastNumber">{{ $sectionNumber['dental'] }}</span>
                             </button>
                         </div>
                         <div class="mt-1 mb-1 text-center">
-                            <button data-modal="modal-surgery" class="btn btn-space btn-danger btn-big col-sm-10 md-trigger"><i class="icon fa fa-stethoscope"></i> Animal Bite </button>
+                            <button data-modal="modal-surgery" class="btn btn-space btn-danger btn-big p-4 col-sm-10 md-trigger"><i class="icon fa fa-stethoscope"></i> Animal Bite </button>
                         </div>
                     </div>
                 </div>
@@ -113,11 +113,11 @@
                     <h3 class="mb-4">Animal Bite</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0"  data-number="{{ $sectionNumber['surgery'] }}">
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0"  data-number="{{ $sectionNumber['surgery'] }}">
                         <i class="icon fa fa-stethoscope"></i> 1st Dose / ER
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="0" data-number="{{ $sectionNumber['bite'] }}">
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="0" data-number="{{ $sectionNumber['bite'] }}">
                         <i class="icon fa fa-stethoscope"></i> 2nd Dose / 3rd Dose
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
@@ -137,27 +137,27 @@
                     <h3 class="mb-4">Senior/Pregnant/PWD</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="1" data-number="{{ $sectionNumber['im'] }}">
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="1" data-number="{{ $sectionNumber['im'] }}">
                         <i class="icon fa fa-stethoscope"></i> Internal Medicine
                         <span class="badge lastNumber">{{ $sectionNumber['im'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}">
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}">
                         <i class="icon fa fa-stethoscope"></i> Surgery
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-ob btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="1" data-number="{{ $sectionNumber['ob'] }}">
+                    <button class="btn btn-space btn-ob btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="1" data-number="{{ $sectionNumber['ob'] }}">
                         <i class="icon fa fa-stethoscope"></i> OB
                         <span class="badge lastNumber">{{ $sectionNumber['ob'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-dental btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="1" data-number="{{ $sectionNumber['dental'] }}">
+                    <button class="btn btn-space btn-dental btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="1" data-number="{{ $sectionNumber['dental'] }}">
                         <i class="icon fa fa-stethoscope"></i> Dental
                         <span class="badge lastNumber">{{ $sectionNumber['dental'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button data-modal="modal-senior-surgery" class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-number="{{ $sectionNumber['bite'] }}">
+                    <button data-modal="modal-senior-surgery" class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-number="{{ $sectionNumber['bite'] }}">
                         <i class="icon fa fa-stethoscope"></i> Animal Bite
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
@@ -176,8 +176,8 @@
                     <h3 class="mb-4">Animal Bite</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}"><i class="icon fa fa-stethoscope"></i> 1st Dose / ER </button>
-                    <button class="btn btn-space btn-danger btn-big col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1" data-number="{{ $sectionNumber['bite'] }}"><i class="icon fa fa-stethoscope"></i> 2nd Dose / 3rd Dose </button>
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}"><i class="icon fa fa-stethoscope"></i> 1st Dose / ER </button>
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1" data-number="{{ $sectionNumber['bite'] }}"><i class="icon fa fa-stethoscope"></i> 2nd Dose / 3rd Dose </button>
                 </div>
             </div>
         </div>
@@ -189,7 +189,7 @@
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="s7-close"></span></button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('number') }}" method="post" data-parsley-validate="" novalidate="">
+                <form action="{{ url('number') }}" method="post" data-parsley-validate="" novalidate="" id="submitForm">
                     {{ csrf_field() }}
                     <input type="hidden" id="txtSection" name="section" />
                     <input type="hidden" id="txtPriority" name="priority" />
@@ -200,19 +200,19 @@
                     </div>
                     <div class="form-group">
                         <label>Hospital Number</label>
-                        <input type="text" name="hospitalNum" data-mask="hospitalNumber" parsley-trigger="change" placeholder="Enter last 6 digit hospital number" autocomplete="off" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" name="lname" parsley-trigger="change" required="" placeholder="Enter last name" autocomplete="off" class="form-control">
+                        <input type="text" name="hospitalNum" data-mask="hospitalNumber" value="000000" parsley-trigger="change" placeholder="Enter last 6 digit hospital number" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>First Name</label>
                         <input type="text" name="fname" parsley-trigger="change" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lname" parsley-trigger="change" required="" placeholder="Enter last name" autocomplete="off" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label>Date of Birth</label>
-                        <input type="date" name="dob" parsley-trigger="change" required="" autocomplete="off" class="form-control">
+                        <input type="date" name="dob" parsley-trigger="change" autocomplete="off" class="form-control">
                     </div>
                     <div class="row pt-0 pt-0 pt-lg-5">
                         <div class="col-lg-12">
@@ -229,10 +229,10 @@
 @endsection
 
 @section('script')
-    <script src="{{ url('resources/tdh/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/parsley/parsley.min.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
-    <script src="{{ url('resources/tdh/') }}/lib/jquery.maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/parsley/parsley.min.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
+    <script src="{{ url('/') }}/lib/jquery.maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
     <script>
         sock.onopen = function() {
             sock.send(JSON.stringify({
@@ -273,22 +273,24 @@
 
     </script>
     <script type="text/javascript">
+        let section = '';
+        let equiv = '';
+        let priority = '';
+        let number = '';
         $('.md-trigger').on('click',function(){
-            var section = $(this).data('section');
-            var equiv = $(this).data('equiv');
-            var priority = $(this).data('priority');
-            var number = $(this).data('number');
+            section = $(this).data('section');
+            equiv = $(this).data('equiv');
+            priority = $(this).data('priority');
+            number = $(this).data('number');
             $('#txtEquiv').val(equiv);
             $('#txtSection').val(section);
             $('#txtPriority').val(priority);
-            if(number){
-                $.ajax({
-                    url: "{{ url('print/store') }}/"+number+"/"+equiv+"/"+priority,
-                    type: "GET",
-                    success: function(){
+        });
 
-                    }
-                });
+        $("#submitForm").on('submit',function (e){
+            console.log(section);
+            if(number){
+                $.get("{{ url('print/store') }}/"+number+"/"+equiv+"/"+priority);
             }
         });
 
@@ -305,7 +307,7 @@
             title: "Success!",
             position: "bottom-right",
             text: "1 patient added successfully.",
-            image: App.conf.assetsPath + "/" + App.conf.imgPath + "/tdh.jpg",
+            image: "{{ url('/img/tdh.jpg') }}",
             class_name: "gritter-theme",
             time: ""
         });

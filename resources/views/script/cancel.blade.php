@@ -1,4 +1,4 @@
-<script src="{{ url('resources/tdh/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
 <script>
 
     //Set Nifty Modals defaults

@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Talisay District Hospital - QUESYSTEM</title>
+    <title>Cebu South Medical Center - QUESYSTEM</title>
 
     <!-- Bootstrap core CSS -->
     <title>TDH - Queuing System</title>
 
     <!-- Fontfaces CSS-->
-    <link href="{{ url('resources/layout/') }}/css/font-face.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="{{ url('resources/layout/') }}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/css/font-face.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <!-- Bootstrap CSS-->
-    <link href="{{ url('resources/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Custom styles for this template -->
-    <link href="{{ url('resources/layout/') }}/css/half-slider.css" rel="stylesheet" media="all">
+    <link href="{{ url('/layout/') }}/css/half-slider.css" rel="stylesheet" media="all">
     <style>
         .wrapper {
             margin-top: 70px;
@@ -33,7 +33,7 @@
             font-weight: bold;
         }
         body {
-            background: url('{{ asset('resources/layout/images/backdrop.png') }}'), -webkit-gradient(radial, center center, 0, center center, 460, from(#ccc), to(#ddd));
+            background: url('{{ asset('/layout/images/backdrop.png') }}'), -webkit-gradient(radial, center center, 0, center center, 460, from(#ccc), to(#ddd));
         }
         .list-group-item {
             margin-bottom: -1px;
@@ -116,7 +116,7 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Talisay District Hospital - QUESYSTEM</a>
+    <a class="navbar-brand" href="#">Cebu South Medical Center - QUESYSTEM</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -166,7 +166,7 @@
                 <td width="50%" colspan="2" rowspan="3">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
-                            <source src="{{ url('videos/kain.mp4') }}" type="video/mp4">
+                            <source src="{{ url('videos/kain.MKV') }}" type="video/mp4">
                         </video>
                     </div>
                     <div class="alert alert-date">
@@ -342,14 +342,15 @@
 
 <!-- Bootstrap core JavaScript -->
 <!-- Jquery JS-->
-<script src="{{ url('resources/layout/') }}/vendor/jquery-3.2.1.min.js"></script>
+<script src="{{ url('/layout/') }}/vendor/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap JS-->
 
-<script src="{{ url('resources/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="{{ url('/layout/') }}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 
 <!-- Main JS-->
-<script src="{{ url('resources/layout/') }}/js/script.js"></script>
-<script src="{{ url('resources/layout/') }}/js/responsivevoice.js"></script>
+<script src="{{ url('/layout/') }}/js/script.js"></script>
+{{--<script src="{{ url('/layout/') }}/js/responsivevoice.js?key=gxUoeh9z"></script>--}}
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=gxUoeh9z"></script>
 <script>
     <?php
         $param = \App\Parameters::where('description','socket')->first()->value;
@@ -358,7 +359,7 @@
 
     var playAudio = function(data){
         var audioElement = document.createElement('audio');
-        audioElement.setAttribute('src', "{{ url('resources/layout/bell.mp3') }}");
+        audioElement.setAttribute('src', "{{ url('/layout/bell.mp3') }}");
         audioElement.addEventListener('ended', function() {
             this.play();
         }, false);
@@ -431,7 +432,7 @@
 <script>
     var myvid = document.getElementById('myvideo');
     var myvids = [
-        "{{ url('videos/kain.mp4') }}",
+        "{{ url('videos/kain.MKV') }}",
         "{{ url('videos/laugh.MKV') }}",
     ];
     myvid.volume = 0.08;

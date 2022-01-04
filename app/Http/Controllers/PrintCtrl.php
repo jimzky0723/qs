@@ -26,13 +26,14 @@ class PrintCtrl extends Controller
             // Enter the share name for your USB printer here
             //$connector = "POS-58";
             //$connector = new WindowsPrintConnector("POS-58");
-            $connector = new WindowsPrintConnector("EPSONTM-T82II");
+            //$connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
+            $connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
             /* Print a "Hello world" receipt" */
             $printer = new Printer($connector);
             /* Name of shop */
             $printer->setJustification($printer::JUSTIFY_CENTER);
             $printer->setEmphasis(true); //bold characters
-            $printer->text("TALISAY DISTRICT HOSPITAL \n");
+            $printer->text("CEBU SOUTH MEDICAL CENTER \n");
             $printer->text("Out Patient Department \n");
             $printer->setEmphasis(false);
             if($priority==1)
@@ -73,7 +74,7 @@ class PrintCtrl extends Controller
             // Enter the share name for your USB printer here
             //$connector = "POS-58";
             //$connector = new WindowsPrintConnector("POS-58");
-            $connector = new WindowsPrintConnector("EPSONTM-T82II");
+            $connector = new WindowsPrintConnector("MAUI-T82II");
             /* Print a "Hello world" receipt" */
             $printer = new Printer($connector);
             /* Name of shop */

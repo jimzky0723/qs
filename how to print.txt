@@ -1,5 +1,8 @@
-- Create shortcut of chrome
-- Open properties
-- In shortcut tab, edit "target"
+1. Install Epson TMT82II
+2. Share the printer with name "TMT82II"
 
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk --kiosk-printing http://localhost/tdh/qs
+** if Shared Printer
+
+//$connector = new WindowsPrintConnector("smb://User:Secret@Computer/WORKGROUP/PrinterName");
+$connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
+

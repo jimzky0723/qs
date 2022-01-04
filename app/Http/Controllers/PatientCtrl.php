@@ -474,66 +474,70 @@ class PatientCtrl extends Controller
             return redirect()->back()->with('pending',$chkOtherStation);
 
         if($section=='card'){
-            $check = Card::whereBetween('created_at',[$start,$end])->count();
-            if($check)
-                return redirect()->back()->with('busy','Card Issuance');
+//            $check = Card::whereBetween('created_at',[$start,$end])->count();
+//            if($check){
+//                ListPatients::find($id)->update([
+//                    'step' => 0
+//                ]);
+//                return redirect()->back()->with('busy','Card Issuance');
+//            }
+//
+//
+//            $c = new Card();
+//            $c->patientId = $id;
+//            $c->save();
 
-            $c = new Card();
-            $c->patientId = $id;
-            $c->save();
-
-            return self::processForward($data,1,$section,'Card Issuance',$data->num,$data->priority,$data->section);
+            return self::processForward($data,0,$section,'Card Issuance',$data->num,$data->priority,$data->section);
         }else if($section == 'vital1'){
-            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',1)->count();
-            if($check)
-                return redirect()->back()->with('busy','Vital Station 1');
-
+//            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',1)->count();
+//            if($check)
+//                return redirect()->back()->with('busy','Vital Station 1');
+//
             $q = new Vital();
             $q->patientId = $id;
-            $q->station = 1;
+            $q->station = 0;
             $q->save();
 
             return self::processForward($data,2,$section,'Vital Station 1',$data->num,$data->priority,$data->section);
         }else if($section == 'vital2'){
-            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',2)->count();
-            if($check)
-                return redirect()->back()->with('busy','Vital Station 2');
-
+//            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',2)->count();
+//            if($check)
+//                return redirect()->back()->with('busy','Vital Station 2');
+//
             $q = new Vital();
             $q->patientId = $id;
-            $q->station = 2;
+            $q->station = 0;
             $q->save();
 
             return self::processForward($data,2,$section,'Vital Station 2',$data->num,$data->priority,$data->section);
         }else if($section == 'vital3'){
 
-            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',3)->count();
-            if($check)
-                return redirect()->back()->with('busy','Vital Station 3');
+//            $check = Vital::whereBetween('created_at',[$start,$end])->where('station',3)->count();
+//            if($check)
+//                return redirect()->back()->with('busy','Vital Station 3');
 
             if($data->section!='ob')
                 return redirect()->back()->with('notOb',true);
 
             $q = new Vital();
             $q->patientId = $id;
-            $q->station = 3;
+            $q->station = 0;
             $q->save();
 
-            return self::processForward($data,2,$section,'Vital Station 3',$data->num,$data->priority,$data->section);
+            return self::processForward($data,1,$section,'Vital Station 3',$data->num,$data->priority,$data->section);
         }else if($section == 'pedia' || $section == 'im' || $section == 'surgery' || $section == 'ob' || $section == 'dental' || $section == 'bite'){
             if($section!=$data->section)
                 return redirect()->back()->with('invalid', AbbrCtrl::equiv($section));
 
-            $check = Consultation::whereBetween('created_at',[$start,$end])->where('status',1)->where('section',$section)->count();
-            if($check)
-//                print_r($check);
-                return redirect()->back()->with('busy', AbbrCtrl::equiv($section));
-
-
+//            $check = Consultation::whereBetween('created_at',[$start,$end])->where('status',1)->where('section',$section)->count();
+//            if($check)
+//                return redirect()->back()->with('busy', AbbrCtrl::equiv($section));
+//
+//
             $q = new Consultation();
             $q->patientId = $id;
             $q->section = $section;
-            $q->status = 1;
+            $q->status = 0;
             $q->save();
 
             return self::processForward($data,3,$section,AbbrCtrl::equiv($section),$data->num,$data->priority,$data->section);
@@ -545,13 +549,18 @@ class PatientCtrl extends Controller
         $data->update([
             'step' => $step
         ]);
+//
+//        return redirect()->back()->with('success',[
+//            'section' => $section,
+//            'forward' => $forward,
+//        ]);
 
         return redirect()->back()->with('info',[
             'section' => $section,
             'forward' => $forward,
-            'num' => $num,
-            'priority' => $priority,
-            'sec' => $sec
+//            'num' => $num,
+//            'priority' => $priority,
+//            'sec' => $sec
         ]);
     }
 
