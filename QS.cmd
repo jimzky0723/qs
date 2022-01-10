@@ -1,2 +1,2 @@
-cd C:\xampp\htdocs\tdh\qs\websocket
+cd C:\wamp64\server\qs\websocket
 nodemon index.js
