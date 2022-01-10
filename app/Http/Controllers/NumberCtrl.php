@@ -69,7 +69,7 @@ class NumberCtrl extends Controller
         return view('next');
     }
 
-    public function getLastNumber($section=null)
+    static function getLastNumber($section=null)
     {
         $dateNow = date('mdY');
         $last = ListPatients::where('section',$section)

@@ -96,6 +96,12 @@
                                     <span class="name">Parameters</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ url('settings/pages') }}" class="nav-link">
+                                    <span class="icon s7-bookmarks"></span>
+                                    <span class="name">Pages</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     @endif

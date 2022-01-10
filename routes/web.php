@@ -74,6 +74,10 @@ Route::post('settings/news/save','AdminCtrl@saveNews');
 Route::post('settings/news/update','AdminCtrl@updateNews');
 Route::get('settings/news/delete/{id}','AdminCtrl@deleteNews');
 
+Route::get('settings/pages','PageCtrl@index');
+Route::get('settings/pages/screen2','PageCtrl@screen2');
+Route::get('settings/pages/getnumber','PageCtrl@getnumber');
+
 Route::get('page/denied',function(){
     return view('page.denied');
 });
