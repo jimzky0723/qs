@@ -91,14 +91,32 @@
                         <div class="input-group mb-2">
                             <div class="input-group-prepend"><span class="input-group-text">WS Port</span></div>
                             <input type="text" placeholder="5001" name="url" class="form-control" value="{{ $url }}">
-
-                            <button class="btn btn-success" type="submit">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend"><span class="input-group-text">Remote Host</span></div>
+                            <input type="text" placeholder="localhost" name="host" class="form-control" value="{{ $host }}">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend"><span class="input-group-text">Remote User</span></div>
+                            <input type="text" placeholder="Admin" name="user" class="form-control" value="{{ $user }}">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend"><span class="input-group-text">Remote Password</span></div>
+                            <input type="password" placeholder="Password" name="password" class="form-control" value="{{ $password }}">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend"><span class="input-group-text">Remote Workgroup</span></div>
+                            <input type="text" placeholder="WORKGROUP" name="workgroup" class="form-control" value="{{ $workgroup }}">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend"><span class="input-group-text">Remote Printer</span></div>
+                            <input type="text" placeholder="Printer Name" name="printer" class="form-control" value="{{ $printer }}">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block" type="submit">
                                 <i class="fa fa-check"></i> Update
                             </button>
                         </div>
-                        <small class="text-muted">
-                            (Example: 5001)
-                        </small>
                         </form>
                     </div>
                 </div>

@@ -199,12 +199,23 @@ class AdminCtrl extends Controller
         $url = Parameters::where('description','socket')
                 ->first()
                 ->value;
+        $host = Parameters::where('description','host')
+            ->first()
+            ->value;
+        $user = Parameters::where('description','user')
+            ->first()
+            ->value;
+        $password = Parameters::where('description','password')
+            ->first()
+            ->value;
+        $workgroup = Parameters::where('description','workgroup')
+            ->first()
+            ->value;
+        $printer = Parameters::where('description','printer')
+            ->first()
+            ->value;
 
-        return view('settings.parameters',[
-            'data' => $data,
-            'info' => $info,
-            'url' => $url
-        ]);
+        return view('settings.parameters',compact('data','info','url','host','user','password','workgroup','printer'));
     }
 
     public function urlUpdate(Request $req)
@@ -212,6 +223,26 @@ class AdminCtrl extends Controller
         Parameters::where('description','socket')
             ->update([
                 'value' => $req->url
+            ]);
+        Parameters::where('description','host')
+            ->update([
+                'value' => $req->host
+            ]);
+        Parameters::where('description','user')
+            ->update([
+                'value' => $req->user
+            ]);
+        Parameters::where('description','workgroup')
+            ->update([
+                'value' => $req->workgroup
+            ]);
+        Parameters::where('description','printer')
+            ->update([
+                'value' => $req->printer
+            ]);
+        Parameters::where('description','password')
+            ->update([
+                'value' => $req->password
             ]);
         return redirect()->back()->with('status','urlUpdated');
     }

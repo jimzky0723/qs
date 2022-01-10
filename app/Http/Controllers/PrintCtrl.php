@@ -27,7 +27,12 @@ class PrintCtrl extends Controller
             //$connector = "POS-58";
             //$connector = new WindowsPrintConnector("POS-58");
             //$connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
-            $connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
+            $user = ParamCtrl::getValue('user');
+            $pass = ParamCtrl::getValue('password');
+            $host = ParamCtrl::getValue('host');
+            $workgroup = ParamCtrl::getValue('workgroup');
+            $prntr = ParamCtrl::getValue('printer');
+            $connector = new WindowsPrintConnector("smb://$user:$pass@$host/$workgroup/$prntr");
             /* Print a "Hello world" receipt" */
             $printer = new Printer($connector);
             /* Name of shop */
