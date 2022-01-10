@@ -98,11 +98,11 @@ $status = session('status');
                     <h3 class="mb-4">Animal Bite</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0"  data-number="{{ $sectionNumber['surgery'] }}">
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="0"  data-number="{{ $sectionNumber['surgery'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> 1st Dose / ER
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="0" data-number="{{ $sectionNumber['bite'] }}">
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="0" data-number="{{ $sectionNumber['bite'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> 2nd Dose / 3rd Dose
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
@@ -122,27 +122,27 @@ $status = session('status');
                     <h3 class="mb-4">Senior/Pregnant/PWD</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="1" data-number="{{ $sectionNumber['im'] }}">
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="im" data-equiv="Internal Medicine" data-priority="1" data-number="{{ $sectionNumber['im'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> Internal Medicine
                         <span class="badge lastNumber">{{ $sectionNumber['im'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}">
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> Surgery
                         <span class="badge lastNumber">{{ $sectionNumber['surgery'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-ob btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="1" data-number="{{ $sectionNumber['ob'] }}">
+                    <button class="btn btn-space btn-ob btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="ob" data-equiv="OB" data-priority="1" data-number="{{ $sectionNumber['ob'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> OB
                         <span class="badge lastNumber">{{ $sectionNumber['ob'] }}</span>
                     </button>
-                    <button class="btn btn-space btn-dental btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="1" data-number="{{ $sectionNumber['dental'] }}">
+                    <button class="btn btn-space btn-dental btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="dental" data-equiv="Dental" data-priority="1" data-number="{{ $sectionNumber['dental'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> Dental
                         <span class="badge lastNumber">{{ $sectionNumber['dental'] }}</span>
                     </button>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button data-modal="modal-senior-surgery" class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-number="{{ $sectionNumber['bite'] }}">
+                    <button data-modal="modal-senior-surgery" class="btn btn-space btn-danger btn-big p-4 col-sm-12 md-trigger" data-number="{{ $sectionNumber['bite'] }}">
                         <i class="icon fa fa-lg fa-stethoscope"></i> Animal Bite
                         <span class="badge lastNumber">{{ $sectionNumber['bite'] }}</span>
                     </button>
@@ -161,8 +161,8 @@ $status = session('status');
                     <h3 class="mb-4">Animal Bite</h3>
                 </div>
                 <div class="mt-1 mb-1 text-center">
-                    <button class="btn btn-space btn-im btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}"><i class="icon fa fa-lg fa-stethoscope"></i> 1st Dose / ER </button>
-                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1" data-number="{{ $sectionNumber['bite'] }}"><i class="icon fa fa-lg fa-stethoscope"></i> 2nd Dose / 3rd Dose </button>
+                    <button class="btn btn-space btn-im btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="surgery" data-equiv="Surgery" data-priority="1" data-number="{{ $sectionNumber['surgery'] }}"><i class="icon fa fa-lg fa-stethoscope"></i> 1st Dose / ER </button>
+                    <button class="btn btn-space btn-danger btn-big p-4 col-sm-12 md-trigger" data-modal="modal-form"  data-section="bite" data-equiv="Animal Bite" data-priority="1" data-number="{{ $sectionNumber['bite'] }}"><i class="icon fa fa-lg fa-stethoscope"></i> 2nd Dose / 3rd Dose </button>
                 </div>
             </div>
         </div>
