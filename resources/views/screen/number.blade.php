@@ -200,11 +200,11 @@ $status = session('status');
                         <input type="date" name="dob" parsley-trigger="change" autocomplete="off" class="form-control">
                     </div>
                     <div class="row pt-0 pt-0 pt-lg-5">
-                        <div class="col-lg-12">
-                            <p class="text-right">
-                                <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                <button type="button" class="modal-close btn btn-space btn-secondary" data-dismiss="modal">Close</button>
-                            </p>
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-space btn-block btn-primary">Submit</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="modal-close btn btn-block btn-space btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </form>
