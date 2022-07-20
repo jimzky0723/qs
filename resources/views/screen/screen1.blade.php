@@ -30,7 +30,7 @@
             font-size: 1.8rem;
         }
         .wrapper {
-            margin-top: 60px;
+            margin-top: 70px;
         }
         div#time,#date {
             font-size: 50px;
