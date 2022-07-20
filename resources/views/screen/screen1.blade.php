@@ -245,7 +245,6 @@
                             ?>
                         @endif
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                        S23
                     </span>
                 </td>
             </tr>
@@ -264,7 +263,6 @@
                             ?>
                         @endif
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                        P12
                     </span>
                 </td>
                 <td>
