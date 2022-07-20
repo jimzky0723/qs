@@ -367,7 +367,7 @@
 
        audioElement.play();
         setTimeout(function(){
-            responsiveVoice.speak('Now Serving, number, '+data.number, "UK English Female", {rate: 0.8});
+            responsiveVoice.speak('Now Serving, ticket, '+data.number, "UK English Female", {rate: 0.8});
             audioElement.pause();
         },2300);
     };
@@ -436,7 +436,7 @@
         "{{ url('videos/kain.MKV') }}",
         "{{ url('videos/laugh.MKV') }}",
     ];
-    myvid.volume = 0.08;
+    myvid.volume = 0.5;
     var activeVideo = 0;
     myvid.addEventListener('ended', function(e) {
         // update the active video index
