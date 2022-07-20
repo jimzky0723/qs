@@ -18,7 +18,7 @@
 <div class="mai-wrapper mai-login">
     <div class="main-content container">
         <div class="splash-container row">
-            <div class="col-md-6 user-message"><span class="splash-message text-right">Hello!<br> it's good to<br> see you again</span><span class="alternative-message text-right"><a href="{{ url('/screen') }}" target="_blank">Go to Queuing Screen</a></span></div>
+            <div class="col-md-6 user-message"><span class="splash-message text-right">Hello!<br> it's good to<br> see you again</span><span class="alternative-message text-right"><a href="{{ url('/screen/screen1') }}" target="_blank">Go to Queuing Screen</a></span></div>
             <div class="col-md-6 form-message"><img src="{{ url('/') }}/img/logo-2x.png" alt="logo" width="169" height="28" class="logo-img mb-4"><span class="splash-description text-center mt-5 mb-5">Login to your account</span>
                 <form method="post" action="{{ url('login') }}">
                     {{ csrf_field() }}
@@ -54,7 +54,7 @@
                                 <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Remember me</span>
                             </label>
                         </div>
-                        <div class="col-sm-6 pt-2 text-sm-right login-forgot-password"><a href="pages-forgot-password.html">Forgot Password?</a></div>
+                        <div class="col-sm-6 pt-2 text-sm-right login-forgot-password"><a href="#">Forgot Password?</a></div>
                     </div>
                 </form>
                 <div class="out-links"><a href="#">© 2018 QueSystem</a></div>

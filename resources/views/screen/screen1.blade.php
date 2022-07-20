@@ -25,15 +25,23 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('/layout/') }}/css/half-slider.css" rel="stylesheet" media="all">
     <style>
+        html, body {margin: 0; height: 100%; overflow: hidden}
+        .navbar-brand {
+            font-size: 1.8rem;
+        }
         .wrapper {
-            margin-top: 70px;
+            margin-top: 60px;
         }
         div#time,#date {
-            font-size: 22px;
+            font-size: 50px;
             font-weight: bold;
+            text-shadow: 6px 5px 6px rgb(0 0 0 / 12%);
         }
         body {
-            background: url('{{ asset('/layout/images/backdrop.png') }}'), -webkit-gradient(radial, center center, 0, center center, 460, from(#ccc), to(#ddd));
+            {{--background: url('{{ asset('/layout/images/backdrop.png') }}'), -webkit-gradient(radial, center center, 0, center center, 460, from(#ccc), to(#ddd));--}}
+            background: url('{{ asset('/img/background.jpg') }}');
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .list-group-item {
             margin-bottom: -1px;
@@ -44,7 +52,6 @@
             color: #fff;
         }
         .alert-date {
-            background: #237663;
             border-radius: 0px;
             color: #fff;
         }
@@ -52,23 +59,7 @@
             color: #fff;
             font-size: 30px;
         }
-        .alert-pending {
-            background: #676d71;
-            min-height: 250px;
-            border-top: 3px solid #cecece;
-            border-radius: 0px;
-            color: #fff;
-        }
-        .pending {
-            text-align: center;
-            font-size: 40px;
-            border-bottom: 2px solid #fff;
-            margin-bottom: 20px;
-            font-weight: bold;
-            background: #666c70;
-            color: #fff;
-            line-height: 70px;
-        }
+
         .fa-priority {
             font-size: 30px;
             letter-spacing: -20px;
@@ -83,32 +74,41 @@
         }
 
         .table td {
-            background: #237663;
+            background: rgb(131 0 0 / 50%);
             color: #fff;
             text-transform: uppercase;
             font-weight: bold;
-            border: 2px solid #fff;
-            height: 130px;
-            text-align: right;
-            padding-top: 40px;
+            /*border: 5px solid #9c5959;*/
+            padding: 30px;
+            text-align: center;
+            vertical-align: middle;
+            min-height: 150px;
             position: relative;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            /*box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;*/
         }
         .table td .number {
-            font-size: 100px;
-            line-height: 125px;
-            color: #ffe142;
+            font-size: 150px;
+            color: #efff2f;
             letter-spacing: -7px;
-            margin-right: 10px;
+            text-shadow: 6px 5px 6px rgb(0 0 0 / 12%);
         }
         span.title {
             position: absolute;
-            left: 10px;
-            top: 10px;
-            font-size: 30px;
+            left: 15px;
+            top: 15px;
+            font-size: 40px;
             text-align: left;
             line-height: 25px;
         }
 
+        .table {
+            border-collapse: separate;
+            border-spacing: 1.5em;
+        }
+        .table tr {
+            height: 280px;
+        }
     </style>
 </head>
 
@@ -116,7 +116,7 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Cebu South Medical Center - QUESYSTEM</a>
+    <a class="navbar-brand" href="#"><img style="width: 6.8rem;" src="{{ url('/img/doh_csmc_ihomp.png') }}" alt=""> Cebu South Medical Center - QUESYSTEM</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -127,7 +127,7 @@
 
 <div class="wrapper">
     <div class="col-md-12">
-        <table class="table table-border">
+        <table class="table table-border" cellspacing="2">
             <tr>
                 <td width="25%">
                     <span class="title">Card Issuance</span>
@@ -163,7 +163,7 @@
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
                     </span>
                 </td>
-                <td width="50%" colspan="2" rowspan="3">
+                <td width="50%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
                             <source src="{{ url('videos/kain.MKV') }}" type="video/mp4">
@@ -245,6 +245,7 @@
                             ?>
                         @endif
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
+                        S23
                     </span>
                 </td>
             </tr>
@@ -263,6 +264,7 @@
                             ?>
                         @endif
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
+                        P12
                     </span>
                 </td>
                 <td>
@@ -298,7 +300,7 @@
                     </span>
                 </td>
                 <td width="25%">
-                    <span class="title" style="font-size:22px;">Animal Bite Treatment Center</span>
+                    <span class="title">ABTC</span>
                     <span class="number section-bite">
                         <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('bite'); ?>
                         @if($getNumber->priority)
@@ -326,7 +328,7 @@
                 <ul id="news-item">
                     @if(count($news) > 0)
                         @foreach($news as $n)
-                            <li><i class="fa fa-arrow-right fa-xs"></i> {{ $n->content }}</li>
+                            <li><i class="fa fa-angle-double-right fa-xs"></i> {{ $n->content }}</li>
                         @endforeach
                     @else
                         <li>No news.</li>

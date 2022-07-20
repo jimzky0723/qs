@@ -25,7 +25,7 @@ class PrintCtrl extends Controller
         try {
             // Enter the share name for your USB printer here
             //$connector = "POS-58";
-            //$connector = new WindowsPrintConnector("POS-58");
+            //$connector = new WindowsPrintConnector("EPSONTM-T82II");
             //$connector = new WindowsPrintConnector("smb://Administrator:pass1234@Maui/WORKGROUP/MAUI-T82II");
             $user = ParamCtrl::getValue('user');
             $pass = ParamCtrl::getValue('password');
