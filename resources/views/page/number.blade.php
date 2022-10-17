@@ -204,11 +204,11 @@
                     </div>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" name="fname" parsley-trigger="change" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
+                        <input type="text" name="fname" parsley-trigger="change" value="Patient" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" name="lname" parsley-trigger="change" required="" placeholder="Enter last name" autocomplete="off" class="form-control">
+                        <input type="text" name="lname" parsley-trigger="change" value="Patient" required="" placeholder="Enter last name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Date of Birth</label>

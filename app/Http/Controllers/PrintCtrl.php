@@ -32,7 +32,8 @@ class PrintCtrl extends Controller
             $host = ParamCtrl::getValue('host');
             $workgroup = ParamCtrl::getValue('workgroup');
             $prntr = ParamCtrl::getValue('printer');
-            $connector = new WindowsPrintConnector("smb://$user:$pass@$host/$workgroup/$prntr");
+            //$connector = new WindowsPrintConnector("smb://$user:$pass@$host/$workgroup/$prntr");
+            $connector = new WindowsPrintConnector("smb://$user:$pass@$host/$prntr");
             /* Print a "Hello world" receipt" */
             $printer = new Printer($connector);
             /* Name of shop */
@@ -72,7 +73,30 @@ class PrintCtrl extends Controller
         }
     }
 
-    public function prints()
+    public function prints(){
+        $ip = "192.168.4.228";
+        $user = "Administrator";
+        $pass = "123";
+        $printername = "EPSONTM8v2";
+        try {
+            // Enter the share name for your printer here, as a smb:// url format
+            //$connector = new WindowsPrintConnector("smb://$ip/$printername");
+            //$connector = new WindowsPrintConnector("smb://$user@$ip/$printername");
+            //$connector = new WindowsPrintConnector("smb://$user:$pass@$ip/workgroup/$printername");
+            $connector = new WindowsPrintConnector("smb://$user:$pass@$ip/$printername");
+
+            /* Print a "Hello world" receipt" */
+            $printer = new Printer($connector);
+            $printer -> text("Hello World!\n");
+            $printer -> cut();
+
+            /* Close printer */
+            $printer -> close();
+        } catch (Exception $e) {
+            echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+        }
+    }
+    public function prints2()
     {
 
         try {
