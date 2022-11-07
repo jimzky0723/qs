@@ -78,6 +78,11 @@
     $('a[href="'+filename+'"]').parent().parent().parent().addClass('open');
 
     $(".loading").show();
+
+    setTimeout(function(){
+        $('.btn-notify').attr('disabled',false)
+        $('.btn-notify').removeClass('disabled');
+    }, 5000)
 </script>
 </body>
 </html>

@@ -64,7 +64,7 @@ $status = session('status');
                         <li><b>Section :</b> {{ \App\Http\Controllers\AbbrCtrl::equiv($current->section) }}</li>
                     </ul>
                     <a href="{{ url('patient/card/done/'.$current->id) }}" class="btn btn-primary btn-block">Done</a>
-                    <button class="btn btn-info btn-block" data-priority="{{ $current->priority }}" data-num="{{ $current->num }}" id="notify">Notify</button>
+                    <button class="btn btn-info btn-block btn-notify" disabled data-priority="{{ $current->priority }}" data-num="{{ $current->num }}" id="notify">Notify</button>
                     <button data-link="{{ url('patient/card/cancel/'.$current->id) }}" data-modal="modal-cancel" class="btn btn-space btn-warning btn-big md-trigger btn-block btn-cancel">Cancel</button>
 
                 </div>

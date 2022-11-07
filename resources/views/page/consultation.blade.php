@@ -76,7 +76,7 @@
                                     <a href="#" data-link="{{ url('patient/consultation/cancel/'.$data->id) }}" data-modal="modal-cancel" class="btn btn-warning btn-sm col-sm-4  md-trigger btn-cancel">
                                         <i class="fa fa-times"></i> Cancel
                                     </a>
-                                    <a href="{{ url('patient/consultation/notify/'.$data->id) }}" class="btn btn-info btn-sm col-sm-4">
+                                    <a href="{{ url('patient/consultation/notify/'.$data->id) }}" class="btn btn-info btn-sm disabled btn-notify col-sm-4">
                                         <i class="fa fa-bell"></i> Notify
                                     </a>
                                 </div>
