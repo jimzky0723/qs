@@ -239,6 +239,8 @@
                     '{{ url('patient/count/3/consultation') }}',
                     function(data){
                         console.log(data);
+                        if(data.pedia || data.im || data.surgery || data.ob || data.dental || data.bite)
+                            swal("Hey", "New patient(s) on queue!", "success");
                         $('.badge-pedia').html('Waiting: ' + data.pedia);
                         $('.badge-im').html('Waiting: ' + data.im);
                         $('.badge-surgery').html('Waiting: ' + data.surgery);

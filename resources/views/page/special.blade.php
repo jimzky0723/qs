@@ -127,8 +127,7 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
     </script>
     <script>
         sock.onopen = function() {
-            console.log('{{ $station }}');
-            //pedia
+            //cashier
             @if($station=='cashier')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('cashier'); ?>
             <?php if($data): ?>
@@ -144,7 +143,7 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
             }));
             <?php endif; ?>
 
-            //internal medicine
+            //msw
             @elseif($station=='msw')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('msw'); ?>
             <?php if($data): ?>
@@ -166,12 +165,14 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
-            console.log(data);
             if(data.channel=='addNumber' && data.section=='consultation'){
                 $.get(
                     '{{ url('patient/count/3/consultation') }}',
                     function(data){
                         console.log(data);
+                        if(data.cashier || data.msw)
+                            swal("Hey", "New patient(s) on queue!", "success");
+
                         $('.badge-cashier').html('Waiting: ' + data.cashier);
                         $('.badge-msw').html('Waiting: ' + data.msw);
                     }

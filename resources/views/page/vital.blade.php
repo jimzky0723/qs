@@ -185,6 +185,8 @@
                     '{{ url('patient/count/2/') }}',
                     function(data){
                         console.log(data);
+                        if(data)
+                            swal("Hey", "New patient(s) on queue!", "success");
                         $('.badge-1').html('Waiting: ' + data);
                         $('.badge-2').html('Waiting: ' + data);
                     }
@@ -193,6 +195,8 @@
                     '{{ url('patient/count/vital/ob') }}',
                     function(data){
                         console.log(data);
+                        if(data)
+                            swal("Hey", "New patient(s) on queue!", "success");
                         $('.badge-3').html('Waiting: ' + data);
                     }
                 );

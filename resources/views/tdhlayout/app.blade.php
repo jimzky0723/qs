@@ -58,6 +58,7 @@
 <script src="{{ url('/') }}/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="{{ url('/') }}/js/app.js" type="text/javascript"></script>
 <script src="{{ url('/') }}/lib/theme-switcher/theme-switcher.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     <?php
         $param = \App\Parameters::where('description','socket')->first()->value;
