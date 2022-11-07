@@ -83,7 +83,7 @@ $status = session('status');
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Hospital #</th>
-                                <th>Section</th>
+                                <th>Department</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>

@@ -166,7 +166,7 @@
                 <td width="50%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
-                            <source src="{{ url('videos/kain.MKV') }}" type="video/mp4">
+                            <source src="{{ url('videos/DOH1.mp4') }}" type="video/mp4">
                         </video>
                     </div>
                     <div class="alert alert-date">
@@ -431,21 +431,28 @@
 </script>
 
 <script>
-    var myvid = document.getElementById('myvideo');
-    var myvids = [
-        "{{ url('videos/kain.MKV') }}",
-        "{{ url('videos/laugh.MKV') }}",
-    ];
-    myvid.volume = 0.25;
-    var activeVideo = 0;
-    myvid.addEventListener('ended', function(e) {
-        // update the active video index
-        activeVideo = (++activeVideo) % myvids.length;
+    $.ajax({
+        url: "{{ url('/get/videos') }}",
+        type: "GET",
+        success: function(data){
+            console.log(data)
 
-        // update the video source and play
-        myvid.src = myvids[activeVideo];
-        myvid.play();
-    });
+            var myvid = document.getElementById('myvideo');
+            var myvids = data
+            console.log(myvids)
+            myvid.volume = 0.25;
+            var activeVideo = 0;
+            myvid.addEventListener('ended', function(e) {
+                // update the active video index
+                activeVideo = (++activeVideo) % myvids.length;
+
+                // update the video source and play
+                myvid.src = myvids[activeVideo];
+                myvid.play();
+            });
+        }
+    })
+
 </script>
 </body>
 

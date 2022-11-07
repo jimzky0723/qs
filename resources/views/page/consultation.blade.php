@@ -65,7 +65,7 @@
                                 <h5 class="text-sm-center"><strong>{{ $data->lname }}, {{ $data->fname }}</strong></h5>
                                 <div class="location text-sm-center">
                                     <strong>Hospital # :</strong> {{ ($data->hospitalNum==null) ? 'N/A': $data->hospitalNum }}<br />
-                                    <strong>Section :</strong> {{ \App\Http\Controllers\AbbrCtrl::equiv($data->section) }}
+                                    <strong>Department :</strong> {{ \App\Http\Controllers\AbbrCtrl::equiv($data->section) }}
                                 </div>
                                 <hr>
 
@@ -88,16 +88,12 @@
                     <div class="col-md-4">
                         <div class="panel panel-border-color panel-border-color-info">
                             <div class="panel-heading panel-heading-divider">
-                                Section: {{ \App\Http\Controllers\AbbrCtrl::equiv($section) }}
+                                Dept: {{ \App\Http\Controllers\AbbrCtrl::equiv($section) }}
                                 <span class="badge badge-info badge-{{ $section }}">Waiting: {{ $count[$section] }}</span>
                             </div>
                             <div class="panel-body">
-                                <div class="emptyNum">
-                                    <small><i class="fa fa-user-plus"></i></small>
-                                </div>
-                                <hr />
-                                <h5 class="text-sm-center">Talisay District Hospital</h5>
                                 <div class="location text-sm-center">
+                                    <img src="{{ url('/') }}/img/logo500.png" width="80%"><br>
                                     <i class="fa fa-user-times"></i> No patient <br />
                                     please select new patient...
                                 </div>

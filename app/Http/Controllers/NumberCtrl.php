@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Consultation;
 use App\ListPatients;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NumberCtrl extends Controller
 {
@@ -71,22 +73,30 @@ class NumberCtrl extends Controller
 
     static function getLastNumber($section=null)
     {
-        $dateNow = date('mdY');
-        $last = ListPatients::where('section',$section)
-                    ->orderBy('id','desc')->first();
+//        $dateNow = date('mdY');
+//        $last = ListPatients::where('section',$section)
+//                    ->orderBy('id','desc')->first();
+//        if(!$last)
+//        {
+//            return 1;
+//        }
+//        $dateF = date('mdY',strtotime($last->created_at));
+//        if($dateNow===$dateF)
+//        {
+//            return $last->num + 1;
+//        }else{
+//            return 1;
+//        }
+        $start = Carbon::today()->startOfDay();
+        $end = Carbon::today()->endOfDay();
 
-        if(!$last)
-        {
+        $last = ListPatients::whereBetween('created_at',[$start,$end])
+            ->orderBy('id','desc')->first();
+        if(!$last){
             return 1;
-        }
-        $dateF = date('mdY',strtotime($last->created_at));
-        if($dateNow===$dateF)
-        {
-            return $last->num + 1;
         }else{
-            return 1;
+            return $last->num + 1;
         }
-
     }
 
     public function saveNumber(Request $req)

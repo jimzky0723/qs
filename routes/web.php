@@ -53,6 +53,7 @@ Route::get('patient/count/{step}/{section}','PatientCtrl@getPendingList');
 
 
 Route::get('patient/forward/{section}/{id}','PatientCtrl@forwardPatient');
+Route::post('patient/change/{id}','PatientCtrl@changeSection');
 
 Route::get('settings/user','AdminCtrl@users');
 Route::post('settings/user','AdminCtrl@userSearch');
@@ -83,6 +84,7 @@ Route::get('page/denied',function(){
 });
 
 Route::get('screen','HomeCtrl@screen');
+Route::get('/get/videos','HomeCtrl@getVideos');
 Route::get('screen/card/pending/list','ScreenCtrl@getPendingInCard');
 Route::get('screen/{screen}','ScreenCtrl@showScreen');
 Route::get('sample',function(){

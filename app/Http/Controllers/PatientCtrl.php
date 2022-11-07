@@ -526,8 +526,9 @@ class PatientCtrl extends Controller
 
             return self::processForward($data,1,$section,'Vital Station 3',$data->num,$data->priority,$data->section);
         }else if($section == 'pedia' || $section == 'im' || $section == 'surgery' || $section == 'ob' || $section == 'dental' || $section == 'bite'){
-            if($section!=$data->section)
-                return redirect()->back()->with('invalid', AbbrCtrl::equiv($section));
+            if($section!=$data->section){
+                return redirect()->back()->with('invalid', AbbrCtrl::equiv($section)); //not valid section
+            }
 
 //            $check = Consultation::whereBetween('created_at',[$start,$end])->where('status',1)->where('section',$section)->count();
 //            if($check)
@@ -542,6 +543,17 @@ class PatientCtrl extends Controller
 
             return self::processForward($data,3,$section,AbbrCtrl::equiv($section),$data->num,$data->priority,$data->section);
         }
+    }
+
+    public function changeSection(Request $req, $id){
+        $chkOtherStation = self::checkOtherStation($id);
+        if($chkOtherStation)
+            return redirect()->back()->with('pending',$chkOtherStation);
+
+        ListPatients::where('id',$id)->update([
+            'section' => $req->section
+        ]);
+        return redirect()->back()->with('changed',true);
     }
 
     public function processForward($data,$step,$section,$forward,$num,$priority,$sec)

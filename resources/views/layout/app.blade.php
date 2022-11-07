@@ -50,7 +50,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="{{ url('/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
+                                        <img src="{{ url('/layout/') }}/images/icon/logo500.png" alt="{{ $user->fname }} {{ $user->lname }}" />
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#">{{ $user->fname }} {{ $user->lname }}</a>
@@ -59,7 +59,7 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="{{ url('/layout/') }}/images/icon/avatar.jpg" alt="{{ $user->fname }} {{ $user->lname }}" />
+                                                    <img src="{{ url('/layout/') }}/images/icon/logo500.png" alt="{{ $user->fname }} {{ $user->lname }}" />
                                                 </a>
                                             </div>
                                             <div class="content">

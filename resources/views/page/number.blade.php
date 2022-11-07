@@ -204,7 +204,7 @@
                     </div>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" name="fname" parsley-trigger="change" value="Patient" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
+                        <input type="text" name="fname" parsley-trigger="change" value="OPD" required="" placeholder="Enter first name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>

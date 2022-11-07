@@ -5,6 +5,7 @@
     $pending = session('pending');
     $info = session('info');
     $success = session('success');
+    $changed = session('changed');
     if($info){
         $info = (object)$info;
     }
@@ -87,6 +88,14 @@
                         </div>
                     @endif
 
+                    @if($changed)
+                        <hr />
+                        <div role="alert" class="alert alert-success">
+                            <div class="icon"><span class="s7-check"></span></div>
+                            <div class="message"><strong>Department successfully changed!</strong></div>
+                        </div>
+                    @endif
+
                     @if(count($data) > 0)
                         <hr />
                         <div class="table-responsive">
@@ -94,9 +103,9 @@
                             <thead class="table-primary">
                             <tr>
                                 <th width="5%"></th>
+                                <th class="text-center">Priority #</th>
                                 <th>Complete Name</th>
                                 <th>Date of Birth</th>
-                                <th class="text-center">Priority #</th>
                                 <th class="text-center">Current</th>
                                 <th>Date Registered</th>
                             </tr>
@@ -104,11 +113,15 @@
                             <tbody>
                             @foreach($data as $row)
                             <tr>
-                                <td>
+                                <td style="white-space: nowrap;">
                                     <button class="btn btn-success btn-xs btn-forward md-trigger" data-modal="modal-forward" data-id="{{ $row->id }}">
                                         <i class="fa fa-send"></i>
                                     </button>
+                                    <button class="btn btn-info btn-xs btn-change-dept md-trigger" data-modal="modal-dept" data-num="{{ \App\Http\Controllers\NumberCtrl::initialSection($row->section) }}{{ $row->num }}" data-id="{{ $row->id }}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
                                 </td>
+                                <td class="text-center">{{ \App\Http\Controllers\NumberCtrl::initialSection($row->section) }}{{ $row->num }}</td>
                                 <td>
                                     @if($row->priority==1)
                                         <i class="fa fa-wheelchair"></i>
@@ -116,7 +129,6 @@
                                     {{ $row->lname }}, {{ $row->fname }}
                                 </td>
                                 <td>{{ date('M d, Y',strtotime($row->dob)) }}</td>
-                                <td class="text-center">{{ \App\Http\Controllers\NumberCtrl::initialSection($row->section) }}{{ $row->num }}</td>
                                 <?php
                                     $classStep = '';
                                     if($row->step==99)
@@ -177,6 +189,44 @@
             </div>
         </div>
     </div>
+
+    <div id="modal-dept" class="modal-container modal-effect-12">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="s7-close"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h3 class="mb-4">Queuing Override: Change Department
+                        <br>
+                        <small class="text-danger">Priority No: <span class="prio-num">0</span></small>
+                    </h3>
+                </div>
+                <hr />
+                <div class="mt-1 mb-1 text-center">
+                    <form action="{{ url('/patient/list') }}" method="post" id="changeDepartment">
+                    @csrf
+                    <div class="form-group">
+                        <select class="form-control" name="section" required style="padding: 3px 5px;">
+                            <option value="">Select Department...</option>
+                            <option value="pedia">Pedia</option>
+                            <option value="im">IM</option>
+                            <option value="surgery">Surgery</option>
+                            <option value="ob">OB</option>
+                            <option value="dental">Dental</option>
+                            <option value="bite">ABTC</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-success" type="submit">
+                            <i class="fa fa-save"></i> Submit
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
@@ -214,13 +264,21 @@
         });
     </script>
     <script>
-        var id, link;
+        var id, link, num;
         $('.btn-forward').on('click',function () {
             id = $(this).data('id');
         })
         $('.btn-section').on('click',function () {
             link = "{{ url('patient/forward') }}/"+$(this).data('section')+"/"+id;
             window.location.href = link;
+        })
+
+        $('.btn-change-dept').on('click',function () {
+            id = $(this).data('id');
+            num = $(this).data('num')
+            link = "{{ url('patient/change') }}/"+id
+            $('#changeDepartment').attr('action',link)
+            $('.prio-num').html(num)
         })
     </script>
     <script>

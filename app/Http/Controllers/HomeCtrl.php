@@ -59,4 +59,19 @@ class HomeCtrl extends Controller
         $return[1] = date('Y-n-j', $time);
         return $return;
     }
+
+    function getVideos(){
+        $path = public_path('/videos');
+
+        $files = array_diff(scandir($path), array('.', '..'));
+        $data = array();
+        foreach($files as $file){
+            $ext = pathinfo($file,PATHINFO_EXTENSION);
+            if($ext=='mp4' || $ext == 'MP4' || $ext == 'mkv' || $ext == 'MKV'){
+                $link = url('/videos/'.$file);
+                array_push($data, $link);
+            }
+        }
+        return $data;
+    }
 }

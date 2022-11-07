@@ -38,7 +38,7 @@
         </ul>
         <!--User Menu-->
         <ul class="nav navbar-nav float-lg-right mai-user-nav">
-            <li class="dropdown nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle nav-link"> <img src="{{ url('/') }}/img/tdh.jpg"><span class="user-name">{{ $auth->fname }} {{ $auth->lname }}</span><span class="angle-down s7-angle-down"></span></a>
+            <li class="dropdown nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle nav-link"> <img src="{{ url('/') }}/img/logo500.png"><span class="user-name">{{ $auth->fname }} {{ $auth->lname }}</span><span class="angle-down s7-angle-down"></span></a>
                 <div role="menu" class="dropdown-menu">
                     <a href="#" class="dropdown-item"> <span class="icon s7-tools"> </span>Account Settings</a>
                     <a href="#" class="dropdown-item"> <span class="icon s7-unlock"> </span>Change Password</a>
