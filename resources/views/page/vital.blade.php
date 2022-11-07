@@ -2,6 +2,7 @@
     $station = session('station');
 ?>
 @extends('tdhlayout.app')
+@section('title','Vitals')
 @section('content')
     <style>
         .panel-heading .badge {

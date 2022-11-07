@@ -1,26 +1,22 @@
 <?php
-    $station = session('section');
-    $access = \Illuminate\Support\Facades\Session::get('access');
-    $tmp = array(
-        'pedia',
-        'im',
-        'surgery',
-        'ob',
-        'dental',
-        'bite'
-    );
-    $sections = array();
-    foreach($tmp as $s)
-    {
-        if($access->$s==1)
-            array_push($sections,$s);
-    }
+$station = session('section');
+$access = \Illuminate\Support\Facades\Session::get('access');
+$tmp = array(
+    'cashier',
+    'msw'
+);
+$sections = array();
+foreach($tmp as $s)
+{
+    if($access->$s==1)
+        array_push($sections,$s);
+}
 
-    $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
+$count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
 
 ?>
-@section('title','Consultation')
 @extends('tdhlayout.app')
+@section('title','Special Lane')
 @section('content')
     <style>
         .panel-heading .badge {
@@ -53,7 +49,7 @@
                 $data = \App\Http\Controllers\PatientCtrl::getConsultationData($section);
                 ?>
                 @if($data)
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="panel panel-border-color panel-border-color-primary">
                             <div class="panel-heading panel-heading-divider">
                                 {{ \App\Http\Controllers\AbbrCtrl::equiv($section) }}: Now Serving...
@@ -86,7 +82,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="panel panel-border-color panel-border-color-info">
                             <div class="panel-heading panel-heading-divider">
                                 Dept: {{ \App\Http\Controllers\AbbrCtrl::equiv($section) }}
@@ -94,7 +90,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="location text-sm-center">
-                                    <img src="{{ url('/') }}/img/logo500.png" width="80%"><br>
+                                    <img src="{{ url('/') }}/img/logo500.png" width="70%"><br>
                                     <i class="fa fa-user-times"></i> No patient <br />
                                     please select new patient...
                                 </div>
@@ -133,101 +129,38 @@
         sock.onopen = function() {
             console.log('{{ $station }}');
             //pedia
-            @if($station=='pedia')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('pedia'); ?>
+            @if($station=='cashier')
+            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('cashier'); ?>
             <?php if($data): ?>
             sock.send(JSON.stringify({
-                section: 'pedia',
+                section: 'cashier',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
-                section: 'pedia',
+                section: 'cashier',
                 number: '&nbsp;'
             }));
             <?php endif; ?>
 
             //internal medicine
-            @elseif($station=='im')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('im'); ?>
+            @elseif($station=='msw')
+            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('msw'); ?>
             <?php if($data): ?>
             sock.send(JSON.stringify({
-                section: 'im',
+                section: 'msw',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
                 priority: '{{ $data->priority }}'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
-                section: 'im',
+                section: 'msw',
                 number: '&nbsp;'
             }));
+            <?php endif; ?>
             <?php endif; ?>
 
-            //surgery
-            @elseif($station=='surgery')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('surgery'); ?>
-            <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'surgery',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'surgery',
-                number: '&nbsp;'
-            }));
-            <?php endif; ?>
-
-            //ob
-            @elseif($station=='ob')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('ob'); ?>
-            <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'ob',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'ob',
-                number: '&nbsp;'
-            }));
-            <?php endif; ?>
-
-            //dental
-            @elseif($station=='dental')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('dental'); ?>
-            <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'dental',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'dental',
-                number: '&nbsp;'
-            }));
-            <?php endif; ?>
-
-            //animal bite
-            @elseif($station=='bite')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('bite'); ?>
-            <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'bite',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'bite',
-                number: '&nbsp;'
-            }));
-            <?php endif; ?>
-            @endif
         };
 
 
@@ -239,12 +172,8 @@
                     '{{ url('patient/count/3/consultation') }}',
                     function(data){
                         console.log(data);
-                        $('.badge-pedia').html('Waiting: ' + data.pedia);
-                        $('.badge-im').html('Waiting: ' + data.im);
-                        $('.badge-surgery').html('Waiting: ' + data.surgery);
-                        $('.badge-ob').html('Waiting: ' + data.ob);
-                        $('.badge-dental').html('Waiting: ' + data.dental);
-                        $('.badge-bite').html('Waiting: ' + data.bite);
+                        $('.badge-cashier').html('Waiting: ' + data.cashier);
+                        $('.badge-msw').html('Waiting: ' + data.msw);
                     }
                 );
             }

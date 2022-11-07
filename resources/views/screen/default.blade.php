@@ -88,9 +88,9 @@
             /*box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;*/
         }
         .table td .number {
-            font-size: 150px;
+            font-size: 250px;
             color: #efff2f;
-            letter-spacing: -7px;
+            letter-spacing: -15px;
             text-shadow: 6px 5px 6px rgb(0 0 0 / 12%);
         }
         span.title {
@@ -105,9 +105,6 @@
         .table {
             border-collapse: separate;
             border-spacing: 1.5em;
-        }
-        .table tr {
-            height: 280px;
         }
     </style>
 </head>
@@ -127,43 +124,10 @@
 
 <div class="wrapper">
     <div class="col-md-12">
-        <table class="table table-border" cellspacing="2">
+        <table class="table table-border" cellspacing="3">
             <tr>
-                <td width="25%">
-                    <span class="title">Card Issuance</span>
-                    <span class="number section-card">
-                        <?php
-                            $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('card');
-                        ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                                $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                                $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td width="25%">
-                    <span class="title">Pedia</span>
-                    <span class="number section-pedia">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('pedia'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td width="50%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
+                <td style="font-size:60px;">{{ \App\Http\Controllers\AbbrCtrl::equiv($section) }}</td>
+                <td width="65%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
                             <source src="{{ url('videos/DOH1.mp4') }}" type="video/mp4">
@@ -181,10 +145,9 @@
                 </td>
             </tr>
             <tr>
-                <td width="25%">
-                    <span class="title">Vital: Station 1</span>
-                    <span class="number section-vital1">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('vital1'); ?>
+                <td width="35%">
+                    <span class="number section-department">
+                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber($section); ?>
                         @if($getNumber->priority)
                             <i class="fa fa-wheelchair fa-priority"></i>
                         @endif
@@ -195,123 +158,7 @@
                             ?>
                         @endif
                         {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td width="25%">
-                    <span class="title">Internal Medicine</span>
-                    <span class="number section-im">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('im'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td width="25%">
-                    <span class="title">Vital: Station 2</span>
-                    <span class="number section-vital2">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('vital2'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td>
-                    <span class="title">Surgery</span>
-                    <span class="number section-surgery">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('surgery'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td width="25%">
-                    <span class="title">Vital: Station 3</span>
-                    <span class="number section-vital3">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('vital3'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td>
-                    <span class="title">OB-Gyne</span>
-                    <span class="number section-ob">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('ob'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td width="25%">
-                    <span class="title">Dental</span>
-                    <span class="number section-dental">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('dental'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
-                </td>
-                <td width="25%">
-                    <span class="title">ABTC</span>
-                    <span class="number section-bite">
-                        <?php $getNumber = \App\Http\Controllers\ScreenCtrl::getNumber('bite'); ?>
-                        @if($getNumber->priority)
-                            <i class="fa fa-wheelchair fa-priority"></i>
-                        @endif
-                        @if($getNumber->num > 0)
-                            <?php
-                            $sec = \App\ListPatients::find($getNumber->patientId)->section;
-                            $initial = \App\Http\Controllers\ScreenCtrl::initialSection($sec);
-                            ?>
-                        @endif
-                        {{ ($getNumber->num > 0) ? $initial: '' }}{!!  $getNumber->num !!}
-                    </span>
+                        </span>
                 </td>
             </tr>
         </table>
@@ -353,8 +200,8 @@
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=gxUoeh9z"></script>
 <script>
     <?php
-        $param = \App\Parameters::where('description','socket')->first()->value;
-        $param = "ws://".$_SERVER['SERVER_NAME'].":$param";
+    $param = \App\Parameters::where('description','socket')->first()->value;
+    $param = "ws://".$_SERVER['SERVER_NAME'].":$param";
     ?>
     var sock = new WebSocket('{{ $param }}');
 
@@ -365,7 +212,7 @@
             this.play();
         }, false);
 
-       audioElement.play();
+        audioElement.play();
         setTimeout(function(){
             responsiveVoice.speak('Now Serving, ticket number, '+data.number, "UK English Female", {rate: 0.8});
             audioElement.pause();
@@ -376,13 +223,13 @@
 
         var data = JSON.parse(event.data);
 
-        if(data.section != 'cashier' && data.section != 'msw'){
+        if(data.section == "{{ $section }}"){
             var priority = '';
             if(data.priority==1)
             {
                 priority = '<i class="fa fa-priority fa-wheelchair"></i>'
             }
-            $('.section-'+data.section).html(priority +" "+data.number).fadeOut(500).fadeIn(500);
+            $('.section-department').html(priority +" "+data.number).fadeOut(500).fadeIn(500);
 
             if(data.number.length > 0 && data.number != '&nbsp;')
             {

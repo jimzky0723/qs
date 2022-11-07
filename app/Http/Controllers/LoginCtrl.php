@@ -42,7 +42,9 @@ class LoginCtrl extends Controller
                             'surgery' => 1,
                             'ob' => 1,
                             'dental' => 1,
-                            'bite' => 1
+                            'bite' => 1,
+                            'cashier' => 1,
+                            'msw' => 1
                         );
                         Session::put('access',(object)$access);
                     }else{

@@ -35,6 +35,10 @@ class AbbrCtrl extends Controller
                 return 'Vital Signs';
             case 'registration':
                 return 'Registration';
+            case 'cashier':
+                return 'Cashier';
+            case 'msw':
+                return 'MSW';
             default:
                 return 'Error';
         }

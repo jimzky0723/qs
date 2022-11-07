@@ -62,6 +62,14 @@
                                 </a>
                             </li>
                             @endif
+                            @if($access->cashier || $access->msw)
+                                <li class="nav-item">
+                                    <a href="{{ url('patient/special') }}" class="nav-link">
+                                        <span class="icon fa fa-road"></span>
+                                        <span class="name">Special Lane</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                     @endif

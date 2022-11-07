@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ url('/') }}/img/favicon.png">
-    <title>{{ (isset($title)) ? $title: 'Cebu South Medical Center' }}</title>
+    <title>@yield('title','Cebu South Medical Center')</title>
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/stroke-7/style.css"/>
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/theme-switcher/theme-switcher.min.css"/>

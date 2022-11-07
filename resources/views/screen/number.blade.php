@@ -74,6 +74,17 @@ $status = session('status');
                         <div class="mt-1 mb-1 text-center">
                             <button data-modal="modal-surgery" class="btn btn-space btn-danger btn-big p-4 col-sm-10 md-trigger"><i class="icon fa fa-lg fa-stethoscope"></i> Animal Bite </button>
                         </div>
+                        <hr>
+                        <div class="mt-1 mb-1 text-center">
+                            <button class="btn btn-space btn-cashier btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="cashier" data-equiv="Cashier" data-priority="0" data-number="{{ $sectionNumber['cashier'] }}">
+                                <i class="icon fa fa-stethoscope"></i> Cashier
+                                <span class="badge lastNumber">{{ $sectionNumber['cashier'] }}</span>
+                            </button>
+                            <button class="btn btn-space btn-msw btn-big p-4 col-sm-5 md-trigger" data-modal="modal-form"  data-section="msw" data-equiv="MSW" data-priority="0" data-number="{{ $sectionNumber['msw'] }}">
+                                <i class="icon fa fa-stethoscope"></i> MSW
+                                <span class="badge lastNumber">{{ $sectionNumber['msw'] }}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 $status = session('status');
 ?>
+@section('title','Card Issuance')
 @extends('tdhlayout.app')
 @section('content')
     <style>

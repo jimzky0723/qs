@@ -1,5 +1,5 @@
 @extends('tdhlayout.app')
-
+@section('title','Dashboard')
 @section('head')
     <link rel="stylesheet" href="{{ url('/css/loader.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/lib/jquery.fullcalendar/fullcalendar.min.css"/>

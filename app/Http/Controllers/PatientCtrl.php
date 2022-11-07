@@ -24,6 +24,8 @@ class PatientCtrl extends Controller
         $list = ListPatients::where('step',0)
             ->where('fname','!=','')
             ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
+            ->where('section','<>','cashier')
+            ->where('section','<>','msw')
             ->orderBy('priority','desc')
             ->limit(10)
             ->get();
@@ -231,6 +233,11 @@ class PatientCtrl extends Controller
         return view('page.consultation');
     }
 
+    public function special()
+    {
+        return view('page.special');
+    }
+
     static function getConsultationData($section)
     {
         $data = Consultation::select('list.*')
@@ -279,6 +286,21 @@ class PatientCtrl extends Controller
                     'priority' => $patient->priority,
                     'patientId' => $next->patientId
                 ]);
+        }
+
+        return redirect()->back()->with('section',$section);
+    }
+
+    public function specialSection($section){
+        $next = ListPatients::where('status','ready')
+                    ->where('section',$section)
+                    ->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])
+                    ->first();
+        if($next){
+            $patient = ListPatients::where('id',$next->id)
+                        ->update([
+                            'status' => 1
+                        ]);
         }
 
         return redirect()->back()->with('section',$section);
@@ -345,7 +367,9 @@ class PatientCtrl extends Controller
                 'surgery' => ListPatients::where('step',3)->where('section','surgery')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
                 'ob' => ListPatients::where('step',3)->where('section','ob')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
                 'dental' => ListPatients::where('step',3)->where('section','dental')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
-                'bite'  => ListPatients::where('step',3)->where('section','bite')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count()
+                'bite'  => ListPatients::where('step',3)->where('section','bite')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'cashier'  => ListPatients::where('step',0)->where('section','cashier')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
+                'msw'  => ListPatients::where('step',0)->where('section','msw')->whereBetween('created_at',[Carbon::now()->startOfDay(),Carbon::now()->endOfDay()])->count(),
             );
             return $data;
         }

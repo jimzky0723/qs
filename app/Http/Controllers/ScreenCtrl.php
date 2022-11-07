@@ -32,6 +32,15 @@ class ScreenCtrl extends Controller
         ]);
     }
 
+    public function defaultScreen($section='pedia'){
+        $news = News::orderBy('created_at','desc')->get();
+        return view('screen/default',[
+            'pending' => self::getPendingInCard(),
+            'news' => $news,
+            'section' => $section
+        ]);
+    }
+
     static function getNumber($section)
     {
         $data = optional(Number::where('section',$section)

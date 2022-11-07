@@ -31,7 +31,9 @@ class NumberCtrl extends Controller
             'im' => self::initialSection('im').self::getLastNumber('im'),
             'ob' => self::initialSection('ob').self::getLastNumber('ob'),
             'bite' => self::initialSection('bite').self::getLastNumber('bite'),
-            'dental' => self::initialSection('dental').self::getLastNumber('dental')
+            'dental' => self::initialSection('dental').self::getLastNumber('dental'),
+            'cashier' => self::initialSection('cashier').self::getLastNumber('cashier'),
+            'msw' => self::initialSection('msw').self::getLastNumber('msw'),
         );
         return view('page.number',[
             'lastNumber' => $lastnumber,
@@ -90,8 +92,20 @@ class NumberCtrl extends Controller
         $start = Carbon::today()->startOfDay();
         $end = Carbon::today()->endOfDay();
 
-        $last = ListPatients::whereBetween('created_at',[$start,$end])
-            ->orderBy('id','desc')->first();
+        if($section=='cashier'){
+            $last = ListPatients::whereBetween('created_at',[$start,$end])
+                ->where('section','cashier')
+                ->orderBy('id','desc')->first();
+        }else if($section=='msw'){
+            $last = ListPatients::whereBetween('created_at',[$start,$end])
+                ->where('section','msw')
+                ->orderBy('id','desc')->first();
+        }else{
+            $last = ListPatients::whereBetween('created_at',[$start,$end])
+                ->where('section','<>','cashier')
+                ->where('section','<>','msw')
+                ->orderBy('id','desc')->first();
+        }
         if(!$last){
             return 1;
         }else{
@@ -125,6 +139,18 @@ class NumberCtrl extends Controller
             $c->section = 'bite';
             $c->status = 0;
             $c->save();
+        }else if($req->section=='cashier'){
+            $c = new Consultation();
+            $c->patientId = $tbl->id;
+            $c->section = 'cashier';
+            $c->status = 0;
+            $c->save();
+        }else if($req->section=='msw'){
+            $c = new Consultation();
+            $c->patientId = $tbl->id;
+            $c->section = 'msw';
+            $c->status = 0;
+            $c->save();
         }
 
         return redirect()->back()->with('status','added');
@@ -145,6 +171,10 @@ class NumberCtrl extends Controller
                 return 'D';
             case 'bite':
                 return 'A';
+            case 'cashier':
+                return 'C';
+            case 'msw':
+                return 'M';
             default:
                 return false;
         }

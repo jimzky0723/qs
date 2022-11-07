@@ -43,6 +43,12 @@ Route::get('patient/consultation/done/{id}','PatientCtrl@consultationDone');
 Route::get('patient/consultation/notify/{id}','PatientCtrl@consultationNotify');
 Route::get('patient/consultation/cancel/{id}','PatientCtrl@consultationCancel');
 
+Route::get('patient/special','PatientCtrl@special');
+Route::get('patient/special/{section}','PatientCtrl@specialSection');
+Route::get('patient/special/done/{id}','PatientCtrl@specialDone');
+Route::get('patient/special/notify/{id}','PatientCtrl@specialNotify');
+Route::get('patient/special/cancel/{id}','PatientCtrl@specialCancel');
+
 Route::get('patient/list','PatientCtrl@patientList');
 Route::post('patient/list','PatientCtrl@searchPatient');
 
@@ -86,7 +92,8 @@ Route::get('page/denied',function(){
 Route::get('screen','HomeCtrl@screen');
 Route::get('/get/videos','HomeCtrl@getVideos');
 Route::get('screen/card/pending/list','ScreenCtrl@getPendingInCard');
-Route::get('screen/{screen}','ScreenCtrl@showScreen');
+Route::get('screen/default/{section}','ScreenCtrl@defaultScreen');
+Route::get('screen/{screen}/','ScreenCtrl@showScreen');
 Route::get('sample',function(){
     $data = array(
         'fname' => 'Jimmy',

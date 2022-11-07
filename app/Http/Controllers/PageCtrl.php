@@ -36,7 +36,9 @@ class PageCtrl extends Controller
             'im' => NumberCtrl::initialSection('im').NumberCtrl::getLastNumber('im'),
             'ob' => NumberCtrl::initialSection('ob').NumberCtrl::getLastNumber('ob'),
             'bite' => NumberCtrl::initialSection('bite').NumberCtrl::getLastNumber('bite'),
-            'dental' => NumberCtrl::initialSection('dental').NumberCtrl::getLastNumber('dental')
+            'dental' => NumberCtrl::initialSection('dental').NumberCtrl::getLastNumber('dental'),
+            'cashier' => NumberCtrl::initialSection('cashier').NumberCtrl::getLastNumber('cashier'),
+            'msw' => NumberCtrl::initialSection('msw').NumberCtrl::getLastNumber('msw'),
         );
 
         return view('screen.number',compact('lastnumber','sectionNumber'));
