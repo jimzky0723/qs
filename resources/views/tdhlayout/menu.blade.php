@@ -33,6 +33,12 @@
                                     <span class="name">Main Screen</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ url('settings/pages') }}" class="nav-link">
+                                    <span class="icon s7-bookmarks"></span>
+                                    <span class="name">Pages</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     @if($access->card || $access->vital || $access->pedia || $access->im || $access->surgery || $access->ob || $access->dental || $access->bite)
@@ -102,12 +108,6 @@
                                 <a href="{{ url('settings/parameters') }}" class="nav-link">
                                     <span class="icon s7-config"></span>
                                     <span class="name">Parameters</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('settings/pages') }}" class="nav-link">
-                                    <span class="icon s7-bookmarks"></span>
-                                    <span class="name">Pages</span>
                                 </a>
                             </li>
                         </ul>

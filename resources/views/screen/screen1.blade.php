@@ -166,7 +166,7 @@
                 <td width="50%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
-                            <source src="{{ url('videos/DOH1.mp4') }}" type="video/mp4">
+                            <source id="video-src" src="{{ url('videos/0-DOH1.mp4') }}" type="video/mp4">
                         </video>
                     </div>
                     <div class="alert alert-date">
@@ -439,7 +439,6 @@
         type: "GET",
         success: function(data){
             console.log(data)
-
             var myvid = document.getElementById('myvideo');
             var myvids = data
             console.log(myvids)

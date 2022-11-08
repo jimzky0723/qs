@@ -130,7 +130,7 @@
                 <td width="65%" colspan="2" rowspan="3" style="padding-bottom: 0px;">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item" id="myvideo" style="background:#000" controls autoplay>
-                            <source src="{{ url('videos/DOH1.mp4') }}" type="video/mp4">
+                            <source src="{{ url('videos/0-DOH1.mp4') }}" type="video/mp4">
                         </video>
                     </div>
                     <div class="alert alert-date">
