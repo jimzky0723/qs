@@ -153,47 +153,75 @@ $status = session('status');
         $(document).ready(function(){
             App.livePreview();
         });
+    </script>
 
+    <script>
+        var data = [];
+        data.push({
+            action: 'registerCardPage',
+            userId: "user{{ Session::get('userId') }}"
+        })
     </script>
 
     @if($current)
         <script>
-            sock.onopen = function() {
-                sock.send(JSON.stringify({
-                    section: 'card',
-                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
-                    priority: '{{ $current->priority }}'
-                }));
+            data.push({
+                section: 'card',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
+                priority: '{{ $current->priority }}'
+            })
 
-                sock.send(JSON.stringify({
-                    channel: 'pending'
-                }));
-            };
+            data.push({
+                channel: 'pending'
+            })
+
+            data.push({
+                action: 'sendToCardPage',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
+                priority: '{{ $current->priority }}'
+            })
         </script>
-    @else
+    @endif
+
+    @if($status == 'added')
         <script>
-            sock.onopen = function() {
-                sock.send(JSON.stringify({
-                    section: 'card',
-                    number: '&nbsp;'
-                }));
+            data.push({
+                section: 'card',
+                number: '&nbsp;'
+            })
 
-                sock.send(JSON.stringify({
-                    section: 'vital',
-                    channel: 'addNumber'
-                }));
+            data.push({
+                channel: '{{ $status }}'
+            })
 
-                sock.send(JSON.stringify({
-                    channel: '{{ $status }}'
-                }));
-            };
+        </script>
+    @elseif($status=='ready')
+        <script>
+            data.push({
+                action: 'sendToVitalPage',
+                section: 'vital',
+                channel: 'addNumber'
+            })
         </script>
     @endif
 
     <script>
+        sock.onopen = function() {
+            data.forEach(function(val){
+                sock.send(JSON.stringify(val));
+            })
+            //sock.send(JSON.stringify(data));
+        };
         $('body').on('click','#notify',function(){
             location.reload();
         });
+        sock.onmessage = function(event) {
+            var data = JSON.parse(event.data)
+            console.log(data)
+            if(data.channel=='addNumber' && data.section=='consultation'){
+                swal("Hey", "New patient(s) on queue!", "success");
+            }
+        }
     </script>
     @include('script.cancel')
 @endsection

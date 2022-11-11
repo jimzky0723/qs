@@ -52,6 +52,7 @@ class LoginCtrl extends Controller
                     }
 
                     Session::put('auth',$login);
+                    Session::put('userId',$login->id);
                     Session::put('socket',Parameters::where('description','socket')->first()->value);
                     return redirect('/');
                 }

@@ -9,6 +9,7 @@
   "author": "JiMzKy0723",
   "license": "ISC",
   "dependencies": {
-    "ws": "^6.0.0"
+    "forever": "^4.0.3",
+    "ws": "^6.2.2"
   }
 }

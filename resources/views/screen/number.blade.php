@@ -229,15 +229,6 @@ $status = session('status');
     <script src="{{ url('/') }}/lib/parsley/parsley.min.js" type="text/javascript"></script>
     <script src="{{ url('/') }}/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
     <script src="{{ url('/') }}/lib/jquery.maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
-    <script>
-        sock.onopen = function() {
-            sock.send(JSON.stringify({
-                section: 'consultation',
-                channel: 'addNumber'
-            }));
-            console.log('sent');
-        }
-    </script>
     <script type="text/javascript">
         //Set Nifty Modals defaults
         $.fn.niftyModal('setDefaults',{
@@ -297,6 +288,12 @@ $status = session('status');
         };
 
         @if($status=='added')
+            sock.onopen = function() {
+                sock.send(JSON.stringify({
+                    section: 'consultation',
+                    channel: 'addNumber'
+                }));
+            }
         $.extend($.gritter.options, {
             position: "bottom-right"
         }), $.gritter.add({

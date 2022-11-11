@@ -245,15 +245,7 @@
     <script src="{{ url('/') }}/lib/parsley/parsley.min.js" type="text/javascript"></script>
     <script src="{{ url('/') }}/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
     <script src="{{ url('/') }}/lib/jquery.maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
-    <script>
-        sock.onopen = function() {
-            sock.send(JSON.stringify({
-                section: 'consultation',
-                channel: 'addNumber'
-            }));
-            console.log('sent');
-        }
-    </script>
+
     <script type="text/javascript">
         //Set Nifty Modals defaults
         $.fn.niftyModal('setDefaults',{
@@ -312,17 +304,28 @@
             printWindow.close();
         };
 
+
+
         @if($status=='added')
-        $.extend($.gritter.options, {
-            position: "bottom-right"
-        }), $.gritter.add({
-            title: "Success!",
-            position: "bottom-right",
-            text: "1 patient added successfully.",
-            image: "{{ url('/img/tdh.jpg') }}",
-            class_name: "gritter-theme",
-            time: ""
-        });
+
+            sock.onopen = function() {
+                sock.send(JSON.stringify({
+                    action: 'sendToCardPage',
+                    section: 'consultation',
+                    channel: 'addNumber'
+                }))
+            }
+
+            $.extend($.gritter.options, {
+                position: "bottom-right"
+            }), $.gritter.add({
+                title: "Success!",
+                position: "bottom-right",
+                text: "1 patient added successfully.",
+                image: "{{ url('/img/tdh.jpg') }}",
+                class_name: "gritter-theme",
+                time: ""
+            });
         @endif
     </script>
 @endsection

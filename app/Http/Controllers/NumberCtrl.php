@@ -139,16 +139,10 @@ class NumberCtrl extends Controller
             $c->section = 'bite';
             $c->status = 0;
             $c->save();
-        }else if($req->section=='cashier'){
+        }else if($req->section=='cashier' || $req->section=='msw'){
             $c = new Consultation();
             $c->patientId = $tbl->id;
-            $c->section = 'cashier';
-            $c->status = 0;
-            $c->save();
-        }else if($req->section=='msw'){
-            $c = new Consultation();
-            $c->patientId = $tbl->id;
-            $c->section = 'msw';
+            $c->section = $req->section;
             $c->status = 0;
             $c->save();
         }

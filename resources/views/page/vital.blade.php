@@ -112,95 +112,107 @@
     </script>
 
     <script>
+        var data = [];
+        data.push({
+            action: 'registerVitalPage',
+            userId: "user{{ Session::get('userId') }}"
+        })
         sock.onopen = function() {
+            //sycc
             @if($station==1)
             {
                 <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(1); ?>
                 <?php if($data): ?>
-                sock.send(JSON.stringify({
-                    section: 'vital1',
-                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                    priority: '{{ $data->priority }}'
-                }));
+                    data.push({
+                        section: 'vital1',
+                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                        priority: '{{ $data->priority }}'
+                    })
+
                 <?php else: ?>
-                sock.send(JSON.stringify({
-                    section: 'vital1',
-                    number: '&nbsp;'
-                }));
-                sock.send(JSON.stringify({
-                    section: 'consultation',
-                    channel: 'addNumber'
-                }));
+                    data.push({
+                        section: 'vital1',
+                        number: '&nbsp;'
+                    })
+
+                    data.push({
+                        section: 'consultation',
+                        channel: 'addNumber'
+                    })
                 <?php endif; ?>
             }
             @elseif($station==2)
             {
                 <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(2); ?>
                 <?php if($data): ?>
-                sock.send(JSON.stringify({
-                    section: 'vital2',
-                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                    priority: '{{ $data->priority }}'
-                }));
+                    data.push({
+                        section: 'vital2',
+                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                        priority: '{{ $data->priority }}'
+                    })
                 <?php else: ?>
-                sock.send(JSON.stringify({
-                    section: 'vital2',
-                    number: '&nbsp;'
-                }));
-                sock.send(JSON.stringify({
-                    section: 'consultation',
-                    channel: 'addNumber'
-                }));
+                    data.push({
+                        section: 'vital2',
+                        number: '&nbsp;'
+                    })
+
+                    data.push({
+                        section: 'consultation',
+                        channel: 'addNumber'
+                    })
                 <?php endif; ?>
             }
             @elseif($station==3)
             {
                 <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(3); ?>
                 <?php if($data): ?>
-                sock.send(JSON.stringify({
-                    section: 'vital3',
-                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                    priority: '{{ $data->priority }}'
-                }));
+                    data.push({
+                        section: 'vital3',
+                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                        priority: '{{ $data->priority }}'
+                    })
                 <?php else: ?>
-                sock.send(JSON.stringify({
-                    section: 'vital3',
-                    number: '&nbsp;'
-                }));
-                sock.send(JSON.stringify({
-                    section: 'consultation',
-                    channel: 'addNumber'
-                }));
+                    data.push({
+                        section: 'vital3',
+                        number: '&nbsp;'
+                    })
+                    data.push({
+                        section: 'consultation',
+                        channel: 'addNumber'
+                    })
                 <?php endif; ?>
-
-
             }
             @endif
         };
 
+        sock.onopen = function() {
+            data.forEach(function(val){
+                sock.send(JSON.stringify(val));
+            })
+        }
+
         sock.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            if(data.channel=='addNumber' && data.section=='vital'){
-                $.get(
-                    '{{ url('patient/count/2/') }}',
-                    function(data){
-                        console.log(data);
-                        if(data)
-                            swal("Hey", "New patient(s) on queue!", "success");
-                        $('.badge-1').html('Waiting: ' + data);
-                        $('.badge-2').html('Waiting: ' + data);
-                    }
-                );
-                $.get(
-                    '{{ url('patient/count/vital/ob') }}',
-                    function(data){
-                        console.log(data);
-                        if(data)
-                            swal("Hey", "New patient(s) on queue!", "success");
-                        $('.badge-3').html('Waiting: ' + data);
-                    }
-                );
-            }
+            var data = JSON.parse(event.data)
+            console.log(data)
+
+            $.get(
+                '{{ url('patient/count/2/') }}',
+                function(data){
+                    if(data)
+                        swal("Hey", "New patient(s) on queue!", "success");
+                    $('.badge-1').html('Waiting: ' + data);
+                    $('.badge-2').html('Waiting: ' + data);
+                }
+            );
+            $.get(
+                '{{ url('patient/count/vital/ob') }}',
+                function(data){
+                    if(data)
+                        swal("Hey", "New patient(s) on queue!", "success");
+                    $('.badge-3').html('Waiting: ' + data);
+                }
+            );
+
         };
     </script>
     @include('script.cancel')

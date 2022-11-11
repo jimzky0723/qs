@@ -131,6 +131,10 @@
     </script>
     <script>
         sock.onopen = function() {
+            sock.send(JSON.stringify({
+                action: 'connect',
+                area: 'consultation'
+            }))
             console.log('{{ $station }}');
             //pedia
             @if($station=='pedia')
@@ -233,7 +237,6 @@
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
-            console.log(data);
             if(data.channel=='addNumber' && data.section=='consultation'){
                 $.get(
                     '{{ url('patient/count/3/consultation') }}',
