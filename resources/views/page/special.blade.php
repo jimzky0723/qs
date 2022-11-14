@@ -127,6 +127,10 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
     </script>
     <script>
         sock.onopen = function() {
+            sock.send(JSON.stringify({
+                action: 'registerSpecialPage',
+                userId: "user{{ Session::get('userId') }}"
+            }))
             //cashier
             @if($station=='cashier')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('cashier'); ?>
@@ -134,12 +138,14 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
             sock.send(JSON.stringify({
                 section: 'cashier',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'cashier',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -150,34 +156,34 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
             sock.send(JSON.stringify({
                 section: 'msw',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'msw',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
             <?php endif; ?>
-
         };
 
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
-            if(data.channel=='addNumber' && data.section=='consultation'){
-                $.get(
-                    '{{ url('patient/count/3/consultation') }}',
-                    function(data){
-                        console.log(data);
-                        if(data.cashier || data.msw)
-                            swal("Hey", "New patient(s) on queue!", "success");
 
-                        $('.badge-cashier').html('Waiting: ' + data.cashier);
-                        $('.badge-msw').html('Waiting: ' + data.msw);
-                    }
-                );
-            }
+            $.get(
+                '{{ url('patient/count/3/consultation') }}',
+                function(data){
+                    console.log(data);
+                    if(data.cashier || data.msw)
+                        swal("Hey", "New patient(s) on queue!", "success");
+
+                    $('.badge-cashier').html('Waiting: ' + data.cashier);
+                    $('.badge-msw').html('Waiting: ' + data.msw);
+                }
+            );
         };
     </script>
 @endsection

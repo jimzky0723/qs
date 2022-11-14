@@ -371,11 +371,16 @@
             audioElement.pause();
         },2300);
     };
-
+    sock.onopen = function(){
+        sock.send(JSON.stringify({
+            action: 'registerScreenPage',
+            userId: "user{{ Session::get('userId') }}"
+        }))
+    }
     sock.onmessage = function(event) {
 
         var data = JSON.parse(event.data);
-
+        console.log(data)
         if(data.section != 'cashier' && data.section != 'msw'){
             var priority = '';
             if(data.priority==1)

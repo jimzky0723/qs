@@ -1,5 +1,7 @@
 <?php
     $station = session('station');
+    $done = session('done');
+
 ?>
 @extends('tdhlayout.app')
 @section('title','Vitals')
@@ -117,74 +119,73 @@
             action: 'registerVitalPage',
             userId: "user{{ Session::get('userId') }}"
         })
-        sock.onopen = function() {
-            //sycc
+
+        @if($done)
+            data.push({
+                action: 'sendToConsultationPage'
+            })
+        @endif
+
             @if($station==1)
-            {
-                <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(1); ?>
-                <?php if($data): ?>
-                    data.push({
-                        section: 'vital1',
-                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                        priority: '{{ $data->priority }}'
-                    })
+        {
+            <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(1); ?>
+            <?php if($data): ?>
+            data.push({
+                section: 'vital1',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
+            })
 
-                <?php else: ?>
-                    data.push({
-                        section: 'vital1',
-                        number: '&nbsp;'
-                    })
-
-                    data.push({
-                        section: 'consultation',
-                        channel: 'addNumber'
-                    })
-                <?php endif; ?>
-            }
+            <?php else: ?>
+            data.push({
+                section: 'vital1',
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
+            })
+            <?php endif; ?>
+        }
             @elseif($station==2)
-            {
-                <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(2); ?>
-                <?php if($data): ?>
-                    data.push({
-                        section: 'vital2',
-                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                        priority: '{{ $data->priority }}'
-                    })
-                <?php else: ?>
-                    data.push({
-                        section: 'vital2',
-                        number: '&nbsp;'
-                    })
+        {
+            <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(2); ?>
+            <?php if($data): ?>
+            data.push({
+                section: 'vital2',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
+            })
+            <?php else: ?>
+            data.push({
+                section: 'vital2',
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
+            })
 
-                    data.push({
-                        section: 'consultation',
-                        channel: 'addNumber'
-                    })
-                <?php endif; ?>
-            }
+            <?php endif; ?>
+        }
             @elseif($station==3)
-            {
-                <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(3); ?>
-                <?php if($data): ?>
-                    data.push({
-                        section: 'vital3',
-                        number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                        priority: '{{ $data->priority }}'
-                    })
-                <?php else: ?>
-                    data.push({
-                        section: 'vital3',
-                        number: '&nbsp;'
-                    })
-                    data.push({
-                        section: 'consultation',
-                        channel: 'addNumber'
-                    })
-                <?php endif; ?>
-            }
-            @endif
-        };
+        {
+            <?php $data = \App\Http\Controllers\PatientCtrl::getVitalData(3); ?>
+            <?php if($data): ?>
+            data.push({
+                section: 'vital3',
+                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
+            })
+            <?php else: ?>
+            data.push({
+                section: 'vital3',
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
+            })
 
+            <?php endif; ?>
+        }
+        @endif
+
+        console.log(data)
         sock.onopen = function() {
             data.forEach(function(val){
                 sock.send(JSON.stringify(val));

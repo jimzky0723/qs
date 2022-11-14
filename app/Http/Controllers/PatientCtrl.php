@@ -174,8 +174,6 @@ class PatientCtrl extends Controller
                         'patientId' => $next->patientId
                     ]);
             }
-
-
             return redirect()->back()->with('station',$station);
         }else if($action=='done'){
             Vital::where('station',$station)->delete();
@@ -197,7 +195,11 @@ class PatientCtrl extends Controller
                     'patientId' => ''
                 ]);
 
-            return redirect()->back()->with('station',$station);
+            return redirect()->route('patient.vital')
+                ->with('station', $station)
+                ->with('done', true);
+
+
         }else if($action=='cancel'){
             Vital::where('station',$station)->delete();
             $data = ListPatients::find($id);

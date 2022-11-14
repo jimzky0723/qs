@@ -145,6 +145,8 @@ class NumberCtrl extends Controller
             $c->section = $req->section;
             $c->status = 0;
             $c->save();
+
+            return redirect()->back()->with('status','addToSpecial');
         }
 
         return redirect()->back()->with('status','added');

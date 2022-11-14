@@ -168,11 +168,8 @@ $status = session('status');
             data.push({
                 section: 'card',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
-                priority: '{{ $current->priority }}'
-            })
-
-            data.push({
-                channel: 'pending'
+                priority: '{{ $current->priority }}',
+                action: 'sendToScreenPage'
             })
 
             data.push({
@@ -189,18 +186,20 @@ $status = session('status');
                 section: 'card',
                 number: '&nbsp;'
             })
-
-            data.push({
-                channel: '{{ $status }}'
-            })
-
         </script>
+
     @elseif($status=='ready')
         <script>
             data.push({
                 action: 'sendToVitalPage',
                 section: 'vital',
                 channel: 'addNumber'
+            })
+
+            data.push({
+                section: 'card',
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             })
         </script>
     @endif

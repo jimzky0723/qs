@@ -315,7 +315,19 @@
                     channel: 'addNumber'
                 }))
             }
+            showNotif()
 
+        @elseif($status=='addToSpecial')
+            sock.onopen = function() {
+            sock.send(JSON.stringify({
+                    action: 'sendToSpecialPage',
+                    channel: 'specialPage',
+                }))
+            }
+            showNotif()
+        @endif
+
+        function showNotif(){
             $.extend($.gritter.options, {
                 position: "bottom-right"
             }), $.gritter.add({
@@ -326,6 +338,6 @@
                 class_name: "gritter-theme",
                 time: ""
             });
-        @endif
+        }
     </script>
 @endsection

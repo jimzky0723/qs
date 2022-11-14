@@ -34,7 +34,7 @@ Route::get('patient/card','PatientCtrl@card')->middleware('page:card');
 Route::get('patient/card/pending/list','PatientCtrl@getPendingInCard')->middleware('page:card');
 Route::get('patient/card/{action}/{id}','PatientCtrl@cardProcess')->middleware('page:card');
 
-Route::get('patient/vital','PatientCtrl@vital')->middleware('page:vital');
+Route::get('patient/vital','PatientCtrl@vital')->name('patient.vital')->middleware('page:vital');
 Route::get('patient/vital/{action}/{station}/{id}','PatientCtrl@vitalProcess')->middleware('page:vital');
 
 Route::get('patient/consultation','PatientCtrl@consultation');

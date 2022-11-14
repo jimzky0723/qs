@@ -10,7 +10,7 @@ class PageCtrl extends Controller
     public function __construct()
     {
         $this->middleware('access');
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
     public function index(){

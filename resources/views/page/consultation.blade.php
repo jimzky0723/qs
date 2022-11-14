@@ -1,5 +1,6 @@
 <?php
     $station = session('section');
+
     $access = \Illuminate\Support\Facades\Session::get('access');
     $tmp = array(
         'pedia',
@@ -132,10 +133,10 @@
     <script>
         sock.onopen = function() {
             sock.send(JSON.stringify({
-                action: 'connect',
-                area: 'consultation'
+                action: 'registerConsultationPage',
+                userId: "user{{ Session::get('userId') }}"
             }))
-            console.log('{{ $station }}');
+
             //pedia
             @if($station=='pedia')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('pedia'); ?>
@@ -143,12 +144,14 @@
             sock.send(JSON.stringify({
                 section: 'pedia',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'pedia',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -159,12 +162,14 @@
             sock.send(JSON.stringify({
                 section: 'im',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'im',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -175,12 +180,14 @@
             sock.send(JSON.stringify({
                 section: 'surgery',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'surgery',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -191,12 +198,14 @@
             sock.send(JSON.stringify({
                 section: 'ob',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'ob',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -207,12 +216,14 @@
             sock.send(JSON.stringify({
                 section: 'dental',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'dental',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
 
@@ -223,12 +234,14 @@
             sock.send(JSON.stringify({
                 section: 'bite',
                 number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}'
+                priority: '{{ $data->priority }}',
+                action: 'sendToScreenPage'
             }));
             <?php else: ?>
             sock.send(JSON.stringify({
                 section: 'bite',
-                number: '&nbsp;'
+                number: '&nbsp;',
+                action: 'sendToScreenPage'
             }));
             <?php endif; ?>
             @endif
@@ -237,22 +250,22 @@
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
-            if(data.channel=='addNumber' && data.section=='consultation'){
-                $.get(
-                    '{{ url('patient/count/3/consultation') }}',
-                    function(data){
-                        console.log(data);
-                        if(data.pedia || data.im || data.surgery || data.ob || data.dental || data.bite)
-                            swal("Hey", "New patient(s) on queue!", "success");
-                        $('.badge-pedia').html('Waiting: ' + data.pedia);
-                        $('.badge-im').html('Waiting: ' + data.im);
-                        $('.badge-surgery').html('Waiting: ' + data.surgery);
-                        $('.badge-ob').html('Waiting: ' + data.ob);
-                        $('.badge-dental').html('Waiting: ' + data.dental);
-                        $('.badge-bite').html('Waiting: ' + data.bite);
-                    }
-                );
-            }
+            console.log(data)
+            $.get(
+                '{{ url('patient/count/3/consultation') }}',
+                function(data){
+                    console.log(data);
+                    if(data.pedia || data.im || data.surgery || data.ob || data.dental || data.bite)
+                        swal("Hey", "New patient(s) on queue!", "success");
+                    $('.badge-pedia').html('Waiting: ' + data.pedia);
+                    $('.badge-im').html('Waiting: ' + data.im);
+                    $('.badge-surgery').html('Waiting: ' + data.surgery);
+                    $('.badge-ob').html('Waiting: ' + data.ob);
+                    $('.badge-dental').html('Waiting: ' + data.dental);
+                    $('.badge-bite').html('Waiting: ' + data.bite);
+                }
+            )
+            swal("Hey", "New patient(s) on queue!", "success")
         };
     </script>
 @endsection

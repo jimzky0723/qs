@@ -205,6 +205,13 @@
     ?>
     var sock = new WebSocket('{{ $param }}');
 
+    sock.onopen = function(){
+        sock.send(JSON.stringify({
+            action: 'registerScreenPage',
+            userId: "user{{ Session::get('userId') }}"
+        }))
+    }
+
     var playAudio = function(data){
         var audioElement = document.createElement('audio');
         audioElement.setAttribute('src', "{{ url('/layout/bell.mp3') }}");
@@ -222,7 +229,7 @@
     sock.onmessage = function(event) {
 
         var data = JSON.parse(event.data);
-
+        console.log(data)
         if(data.section == "{{ $section }}"){
             var priority = '';
             if(data.priority==1)

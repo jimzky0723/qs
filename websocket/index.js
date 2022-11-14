@@ -4,6 +4,9 @@ var s = new server({ port:5001})
 //add pages
 var cardPages = {}
 var vitalPages = {}
+var consultationPages = {}
+var specialPages = {}
+var screenPages = {}
 
 s.on('connection',function(ws) {
     ws.on('message',function(message){
@@ -16,19 +19,39 @@ s.on('connection',function(ws) {
         }else if(data.action==='registerVitalPage'){
             vitalPages[data.userId] = ws
             console.log(data.userId + ' registered!')
+        }else if(data.action==='registerConsultationPage'){
+            consultationPages[data.userId] = ws
+            console.log(data.userId + ' registered!')
+        }else if(data.action==='registerSpecialPage'){
+            specialPages[data.userId] = ws
+            console.log(data.userId + ' registered!')
+        }else if(data.action==='registerScreenPage'){
+            screenPages[data.userId] = ws
+            console.log(data.userId + ' registered to screen!')
         }
 
         if(data.action === 'sendToCardPage'){
             clients = cardPages
-
         }else if(data.action === 'sendToVitalPage'){
             clients = vitalPages
+        }else if(data.action === 'sendToConsultationPage'){
+            clients = consultationPages
+        }else if(data.action === 'sendToSpecialPage'){
+            clients = specialPages
+        }else if(data.action === 'sendToScreenPage'){
+            clients = screenPages
+            // s.clients.forEach(function e(client) {
+            //     client.send(JSON.stringify({
+            //         section: data.section,
+            //         number: data.number,
+            //         priority: data.priority
+            //     }))
+            // })
         }
 
         try {
             Object.keys(clients).forEach(function (key) {
                 clients[key].send(JSON.stringify(data))
-                console.log('sending to card page...')
             })
         }catch(e){
 
@@ -55,24 +78,6 @@ s.on('connection',function(ws) {
         //     }
         //
         // });
-
-        function registerCardPage(id,ws){
-            if(!cardPages.hasOwnProperty(id)){
-                cardPages[id] = ws;
-                console.log('registered: ',id)
-            }
-        }
-
-        function sendData(data){
-            try {
-                Object.keys(cardPages).forEach(function (key) {
-                    console.log(Object.keys(cardPages).length)
-                    cardPages[key].send(JSON.stringify(data))
-                })
-            }catch (e){
-
-            }
-        }
     })
 })
 
