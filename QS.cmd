@@ -1,2 +1,2 @@
 cd C:\wamp64\server\qs\websocket
-nodemon index.js
+forever start index.js
