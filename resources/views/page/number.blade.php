@@ -310,9 +310,7 @@
 
             sock.onopen = function() {
                 sock.send(JSON.stringify({
-                    action: 'sendToCardPage',
-                    section: 'consultation',
-                    channel: 'addNumber'
+                    action: 'sendToCardPage'
                 }))
             }
             showNotif()
@@ -321,7 +319,7 @@
             sock.onopen = function() {
             sock.send(JSON.stringify({
                     action: 'sendToSpecialPage',
-                    channel: 'specialPage',
+                    section: "{{ session('section') }}"
                 }))
             }
             showNotif()

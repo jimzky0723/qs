@@ -371,30 +371,26 @@
             audioElement.pause();
         },2300);
     };
-    sock.onopen = function(){
-        sock.send(JSON.stringify({
-            action: 'registerScreenPage',
-            userId: "user{{ Session::get('userId') }}"
-        }))
-    }
+
     sock.onmessage = function(event) {
-
         var data = JSON.parse(event.data);
-        console.log(data)
-        if(data.section != 'cashier' && data.section != 'msw'){
-            var priority = '';
-            if(data.priority==1)
-            {
-                priority = '<i class="fa fa-priority fa-wheelchair"></i>'
-            }
-            $('.section-'+data.section).html(priority +" "+data.number).fadeOut(500).fadeIn(500);
+        if(data.action == 'sendToScreenPage'){
+            if(data.section != 'cashier' && data.section != 'msw'){
+                var priority = '';
+                if(data.priority==1)
+                {
+                    priority = '<i class="fa fa-priority fa-wheelchair"></i>'
+                }
+                $('.section-'+data.section).html(priority +" "+data.number).fadeOut(500).fadeIn(500);
 
-            if(data.number.length > 0 && data.number != '&nbsp;')
-            {
-                playAudio(data);
+                if(data.number.length > 0 && data.number != '&nbsp;')
+                {
+                    playAudio(data);
+                }
             }
         }
-    };
+
+    }
 </script>
 
 <script>

@@ -197,6 +197,7 @@ class PatientCtrl extends Controller
 
             return redirect()->route('patient.vital')
                 ->with('station', $station)
+                ->with('section', NumberCtrl::fullNameSection($data->section))
                 ->with('done', true);
 
 

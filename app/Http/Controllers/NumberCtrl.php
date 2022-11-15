@@ -146,7 +146,7 @@ class NumberCtrl extends Controller
             $c->status = 0;
             $c->save();
 
-            return redirect()->back()->with('status','addToSpecial');
+            return redirect()->back()->with('status','addToSpecial')->with('section',self::fullNameSection($req->section));
         }
 
         return redirect()->back()->with('status','added');
@@ -171,6 +171,30 @@ class NumberCtrl extends Controller
                 return 'C';
             case 'msw':
                 return 'M';
+            default:
+                return false;
+        }
+    }
+
+    static function fullNameSection($section)
+    {
+        switch ($section){
+            case 'pedia':
+                return 'Pedia';
+            case 'im':
+                return 'Internal Medicine';
+            case 'surgery':
+                return 'Surgery';
+            case 'ob':
+                return 'OB';
+            case 'dental':
+                return 'Dental';
+            case 'bite':
+                return 'Animal Bite';
+            case 'cashier':
+                return 'Cashier';
+            case 'msw':
+                return 'MSW';
             default:
                 return false;
         }

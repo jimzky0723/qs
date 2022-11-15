@@ -132,11 +132,6 @@
     </script>
     <script>
         sock.onopen = function() {
-            sock.send(JSON.stringify({
-                action: 'registerConsultationPage',
-                userId: "user{{ Session::get('userId') }}"
-            }))
-
             //pedia
             @if($station=='pedia')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('pedia'); ?>
@@ -251,21 +246,24 @@
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
             console.log(data)
-            $.get(
-                '{{ url('patient/count/3/consultation') }}',
-                function(data){
-                    console.log(data);
-                    if(data.pedia || data.im || data.surgery || data.ob || data.dental || data.bite)
-                        swal("Hey", "New patient(s) on queue!", "success");
-                    $('.badge-pedia').html('Waiting: ' + data.pedia);
-                    $('.badge-im').html('Waiting: ' + data.im);
-                    $('.badge-surgery').html('Waiting: ' + data.surgery);
-                    $('.badge-ob').html('Waiting: ' + data.ob);
-                    $('.badge-dental').html('Waiting: ' + data.dental);
-                    $('.badge-bite').html('Waiting: ' + data.bite);
-                }
-            )
-            swal("Hey", "New patient(s) on queue!", "success")
+            if(data.action == 'sendToConsultationPage') {
+                var section = data.section
+                $.get(
+                    '{{ url('patient/count/3/consultation') }}',
+                    function (data) {
+                        console.log(data);
+                        if (data.pedia || data.im || data.surgery || data.ob || data.dental || data.bite)
+                            swal(section, "New patient(s) on queue!", "success")
+                        $('.badge-pedia').html('Waiting: ' + data.pedia);
+                        $('.badge-im').html('Waiting: ' + data.im);
+                        $('.badge-surgery').html('Waiting: ' + data.surgery);
+                        $('.badge-ob').html('Waiting: ' + data.ob);
+                        $('.badge-dental').html('Waiting: ' + data.dental);
+                        $('.badge-bite').html('Waiting: ' + data.bite);
+                    }
+                )
+
+            }
         };
     </script>
 @endsection

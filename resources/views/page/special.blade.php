@@ -127,63 +127,63 @@ $count =  \App\Http\Controllers\PatientCtrl::getPendingList(3,'consultation');
     </script>
     <script>
         sock.onopen = function() {
-            sock.send(JSON.stringify({
-                action: 'registerSpecialPage',
-                userId: "user{{ Session::get('userId') }}"
-            }))
             //cashier
             @if($station=='cashier')
             <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('cashier'); ?>
             <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'cashier',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}',
-                action: 'sendToScreenPage'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'cashier',
-                number: '&nbsp;',
-                action: 'sendToScreenPage'
-            }));
-            <?php endif; ?>
+                sock.send(JSON.stringify({
+                    section: 'cashier',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                    priority: '{{ $data->priority }}',
+                    action: 'sendToScreenPage'
+                }));
+                <?php else: ?>
+                sock.send(JSON.stringify({
+                    section: 'cashier',
+                    number: '&nbsp;',
+                    action: 'sendToScreenPage'
+                }));
+                <?php endif; ?>
 
-            //msw
-            @elseif($station=='msw')
-            <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('msw'); ?>
-            <?php if($data): ?>
-            sock.send(JSON.stringify({
-                section: 'msw',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
-                priority: '{{ $data->priority }}',
-                action: 'sendToScreenPage'
-            }));
-            <?php else: ?>
-            sock.send(JSON.stringify({
-                section: 'msw',
-                number: '&nbsp;',
-                action: 'sendToScreenPage'
-            }));
-            <?php endif; ?>
+                //msw
+                @elseif($station=='msw')
+                <?php $data = \App\Http\Controllers\PatientCtrl::getConsultationData('msw'); ?>
+                <?php if($data): ?>
+                sock.send(JSON.stringify({
+                    section: 'msw',
+                    number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($data->section) }}{{ $data->num }}',
+                    priority: '{{ $data->priority }}',
+                    action: 'sendToScreenPage'
+                }));
+                <?php else: ?>
+                sock.send(JSON.stringify({
+                    section: 'msw',
+                    number: '&nbsp;',
+                    action: 'sendToScreenPage'
+                }));
+                <?php endif; ?>
             <?php endif; ?>
         };
 
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data);
+            console.log(data)
+            if(data.action == 'sendToSpecialPage'){
+                var section = data.section
+                $.get(
+                    '{{ url('patient/count/3/consultation') }}',
+                    function(data){
+                        console.log(data);
+                        if(data.cashier || data.msw)
+                            swal(section, "New patient(s) on queue!", "success");
 
-            $.get(
-                '{{ url('patient/count/3/consultation') }}',
-                function(data){
-                    console.log(data);
-                    if(data.cashier || data.msw)
-                        swal("Hey", "New patient(s) on queue!", "success");
+                        $('.badge-cashier').html('Waiting: ' + data.cashier);
+                        $('.badge-msw').html('Waiting: ' + data.msw);
+                    }
+                );
+            }
 
-                    $('.badge-cashier').html('Waiting: ' + data.cashier);
-                    $('.badge-msw').html('Waiting: ' + data.msw);
-                }
-            );
         };
     </script>
 @endsection

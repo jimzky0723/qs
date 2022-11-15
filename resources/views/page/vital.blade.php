@@ -115,14 +115,10 @@
 
     <script>
         var data = [];
-        data.push({
-            action: 'registerVitalPage',
-            userId: "user{{ Session::get('userId') }}"
-        })
-
         @if($done)
             data.push({
-                action: 'sendToConsultationPage'
+                action: 'sendToConsultationPage',
+                section: "{{ session('section') }}"
             })
         @endif
 
@@ -194,27 +190,26 @@
 
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data)
-            console.log(data)
-
-            $.get(
-                '{{ url('patient/count/2/') }}',
-                function(data){
-                    if(data)
-                        swal("Hey", "New patient(s) on queue!", "success");
-                    $('.badge-1').html('Waiting: ' + data);
-                    $('.badge-2').html('Waiting: ' + data);
-                }
-            );
-            $.get(
-                '{{ url('patient/count/vital/ob') }}',
-                function(data){
-                    if(data)
-                        swal("Hey", "New patient(s) on queue!", "success");
-                    $('.badge-3').html('Waiting: ' + data);
-                }
-            );
-
-        };
+            if(data.action == 'sendToVitalPage'){
+                $.get(
+                    '{{ url('patient/count/2/') }}',
+                    function(data){
+                        if(data)
+                            swal("Hey", "New patient(s) on queue!", "success");
+                        $('.badge-1').html('Waiting: ' + data);
+                        $('.badge-2').html('Waiting: ' + data);
+                    }
+                );
+                $.get(
+                    '{{ url('patient/count/vital/ob') }}',
+                    function(data){
+                        if(data)
+                            swal("Hey", "New patient(s) on queue!", "success");
+                        $('.badge-3').html('Waiting: ' + data);
+                    }
+                );
+            }
+        }
     </script>
     @include('script.cancel')
 @endsection

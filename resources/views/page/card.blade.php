@@ -153,14 +153,7 @@ $status = session('status');
         $(document).ready(function(){
             App.livePreview();
         });
-    </script>
-
-    <script>
         var data = [];
-        data.push({
-            action: 'registerCardPage',
-            userId: "user{{ Session::get('userId') }}"
-        })
     </script>
 
     @if($current)
@@ -171,24 +164,10 @@ $status = session('status');
                 priority: '{{ $current->priority }}',
                 action: 'sendToScreenPage'
             })
-
-            data.push({
-                action: 'sendToCardPage',
-                number: '{{ \App\Http\Controllers\NumberCtrl::initialSection($current->section) }}{{ $current->num }}',
-                priority: '{{ $current->priority }}'
-            })
         </script>
     @endif
 
-    @if($status == 'added')
-        <script>
-            data.push({
-                section: 'card',
-                number: '&nbsp;'
-            })
-        </script>
-
-    @elseif($status=='ready')
+    @if($status=='ready')
         <script>
             data.push({
                 action: 'sendToVitalPage',
@@ -217,7 +196,7 @@ $status = session('status');
         sock.onmessage = function(event) {
             var data = JSON.parse(event.data)
             console.log(data)
-            if(data.channel=='addNumber' && data.section=='consultation'){
+            if(data.action=='sendToCardPage'){
                 swal("Hey", "New patient(s) on queue!", "success");
             }
         }
